@@ -1,12 +1,25 @@
 {
-  "printWidth": 100,
+  "tabWidth": 2,
+  "bracketSameLine": false,
+  "printWidth": 120,
   "singleQuote": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "endOfLine": "lf",
+  "trailingComma": "es5",
   "overrides": [
     {
-      "files": "*.html",
+      "files": ["*.html"],
       "options": {
-        "parser": "angular"
+        "parser": "angular",
+        "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["*.css"],
+      "options": {
+        "parser": "css"
       }
     }
-  ]
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
