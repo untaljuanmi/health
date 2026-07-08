@@ -47,7 +47,7 @@ export class AppUpdateState {
       return;
     }
 
-    interval(60 * 1000).subscribe((): void => {
+    interval(10 * 60 * 1000).subscribe((): void => {
       console.log('💭 Checking for new versions...');
       void this._swUpdate.checkForUpdate();
     });
