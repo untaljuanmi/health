@@ -1,4 +1,4 @@
-import { inject, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   addDoc,
   collection,
@@ -19,7 +19,9 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-@Service()
+@Injectable({
+  providedIn: 'root',
+})
 export abstract class FirestoreState<T extends { id?: string | null }> {
   private readonly _firestore = inject(Firestore);
 
