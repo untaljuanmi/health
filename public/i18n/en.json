@@ -1,3 +1,59 @@
 {
-  "title": "My Health"
+  "title": "My Health",
+  "common": {
+    "buttons": {
+      "cancel": "Cancel",
+      "accept": "Accept",
+      "save": "Save",
+      "saving": "Saving..."
+    },
+    "errors": {
+      "required": "This field is required",
+      "email": "This email is not valid",
+      "minLength": "The minimum number of characters has not been reached",
+      "maxLength": "Maximum number of characters reached",
+      "min": "The minimum value should be {{value}}",
+      "max": "The maximum value should be {{value}}"
+    },
+    "confirm": {
+      "update": {
+        "title": "New version available",
+        "description": "A new version of the application has been detected. Do you want to update now?"
+      }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "signInToYourAccount": "Sign in",
+      "yourEmail": "Your email",
+      "emailPlaceholder": "name@domain.com",
+      "password": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in...",
+      "doNotHaveAnAccountYet": "Don't have an account yet?",
+      "signUp": "Sign up"
+    },
+    "signUp": {
+      "signUpToYourAccount": "Sign up to your account",
+      "yourName": "Your name",
+      "yourEmail": "Your email",
+      "emailPlaceholder": "name@domain.com",
+      "password": "Password",
+      "signUp": "Sign up",
+      "signingUp": "Signing up...",
+      "alreadyHaveAnAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "errors": {
+      "auth/invalid-email": "The provided email is not valid",
+      "auth/invalid-credential": "Invalid credentials",
+      "auth/weak-password": "The password must be at least 6 characters",
+      "auth/email-already-in-use": "The email is already in use",
+      "auth/too-many-requests": "Too many attempts. Please try again later",
+      "auth.errors.auth/network-request-failed": "An error has occurred trying to establish connection with the servers"
+    },
+    "home": {
+      "title": "Home"
+    }
+  }
 }

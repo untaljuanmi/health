@@ -1,3 +1,59 @@
 {
-  "title": "Mi Salud"
+  "title": "Mi Salud",
+  "common": {
+    "buttons": {
+      "cancel": "Cancelar",
+      "accept": "Aceptar",
+      "save": "Guardar",
+      "saving": "Guardando..."
+    },
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "email": "Este correo no es válido",
+      "minLength": "No se ha alcanzado el número mínimo de caracteres",
+      "maxLength": "Alcanzado el número máximo de caracteres",
+      "min": "El valor mínimo es {{value}}",
+      "max": "El valor máximo es {{value}}"
+    },
+    "confirm": {
+      "update": {
+        "title": "Nueva versión disponible",
+        "description": "Se ha detectado una nueva versión de la aplicación. ¿Quieres actualizar ahora?"
+      }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "signInToYourAccount": "Inicia sesión",
+      "yourEmail": "Tu correo",
+      "emailPlaceholder": "nombre@dominio.com",
+      "password": "Contraseña",
+      "signIn": "Iniciar sesión",
+      "signingIn": "Iniciando sesión...",
+      "doNotHaveAnAccountYet": "¿Aún no tienes una cuenta?",
+      "signUp": "Crear cuenta"
+    },
+    "signUp": {
+      "signUpToYourAccount": "Crea una cuenta",
+      "yourName": "Tu nombre",
+      "yourEmail": "Tu correo",
+      "emailPlaceholder": "nombre@dominio.com",
+      "password": "Contraseña",
+      "signUp": "Crear cuenta",
+      "signingUp": "Creando cuenta...",
+      "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Iniciar sesión"
+    },
+    "errors": {
+      "auth/invalid-email": "El correo proporcionado no es válido",
+      "auth/invalid-credential": "Credenciales inválidas",
+      "auth/weak-password": "La contraseña debe tener al menos 6 caracteres",
+      "auth/email-already-in-use": "El correo ya está en uso",
+      "auth/too-many-requests": "Demasiados intentos. Por favor, inténtalo de nuevo más tarde",
+      "auth.errors.auth/network-request-failed": "Ha ocurrido un error al intentar conectar con los servidores"
+    }
+  },
+  "home": {
+    "title": "Inicio"
+  }
 }
