@@ -19,6 +19,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+qodana.yaml
 
 # Visual Studio Code
 .vscode/*
@@ -26,7 +27,6 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/mcp.json
 .history/*
 
 # Miscellaneous
@@ -37,11 +37,22 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
-__screenshots__/
 
 # System files
 .DS_Store
 Thumbs.db
 
-# Bun
+# AI
+WARP.md
+
+# Lock files
 bun.lock
+package-lock.json
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
+
+# Environment
+/src/environments/environment.ts
