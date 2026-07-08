@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+
+import { AuthState } from '../../../auth';
 
 @Component({
   selector: 'app-navbar',
@@ -8,4 +10,10 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './navbar.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Navbar {}
+export class Navbar {
+  private readonly _authState = inject(AuthState);
+
+  onClickSignOut(): void {
+    this._authState.signOut();
+  }
+}

@@ -75,8 +75,8 @@ export class AuthState {
   private listenAuthStateReady(): void {
     this._appState.isAppReady.set(false);
 
-    this._auth.onAuthStateChanged((_: User | null): void => {
-      this._appState.initState();
+    this._auth.onAuthStateChanged((user: User | null): void => {
+      this._appState.initState(user);
     });
   }
 }

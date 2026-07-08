@@ -23,6 +23,7 @@
     }
   },
   "auth": {
+    "signOut": "Cerrar sesión",
     "signIn": {
       "signInToYourAccount": "Inicia sesión",
       "yourEmail": "Tu correo",

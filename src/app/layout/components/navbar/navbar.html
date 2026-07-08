@@ -5,7 +5,11 @@
     <span class="mat-icon mat-icon-3xl">home</span>
     <span>{{ 'home.title' | translate }}</span>
   </button>
+  <button class="my-navbar-button" (click)="onClickSignOut()">
+    <span class="mat-icon mat-icon-3xl">logout</span>
+    <span>{{ 'auth.signOut' | translate }}</span>
+  </button>
 </nav>
 <button class="my-button primary pointer-events-auto h-14 min-h-14 w-14 min-w-14 justify-center rounded-full p-2">
-  <span class="mat-icon mat-icon-3xl">add_task</span>
+  <span class="mat-icon mat-icon-3xl">add_notes</span>
 </button>

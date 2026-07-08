@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable, signal } from '@angular/core';
 export class AppState {
   isAppReady = signal<boolean>(false);
 
-  initState(): void {
-    this.isAppReady.set(true);
+  initState(user: User | null): void {
+    this.isAppReady.set(!!user);
   }
 }
