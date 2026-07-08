@@ -1,14 +1,8 @@
 @let _divider = divider();
 
-<div
-  class="flex flex-1 cursor-default items-center gap-2 px-8 pt-8 select-none {{
-    _divider ? 'pb-8' : 'pb-0'
-  }}"
->
+<div class="flex flex-1 cursor-default items-center gap-2 px-8 pt-8 select-none {{ _divider ? 'pb-8' : 'pb-0' }}">
   <ng-content select=".my-card-header-icon" />
-  <div
-    class="font-subtitle-4xl text-my-secondary-900 dark:text-my-secondary-50 flex flex-1 items-center gap-2"
-  >
+  <div class="font-subtitle-4xl text-my-secondary-900 dark:text-my-secondary-50 flex flex-1 items-center gap-2">
     <ng-content select=".my-card-header-title" />
   </div>
   <div class="flex items-center justify-center gap-4">
