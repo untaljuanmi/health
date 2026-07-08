@@ -1,0 +1,49 @@
+@layer components {
+  button.my-button {
+    @apply flex h-10 max-h-10 min-h-10 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg px-10 py-2 shadow-sm transition-transform duration-100 outline-none select-none active:translate-y-0.5 active:shadow-xs;
+
+    &.primary {
+      @apply bg-my-primary-default hover:bg-my-primary-hover active:bg-my-primary-active disabled:bg-my-primary-default/50 text-white disabled:translate-y-0 disabled:cursor-not-allowed disabled:shadow-sm;
+
+      &.info {
+        @apply bg-my-info-default hover:bg-my-info-hover active:bg-my-info-active disabled:bg-my-info-default/50 text-white disabled:translate-y-0 disabled:cursor-not-allowed disabled:shadow-sm;
+      }
+
+      &.success {
+        @apply bg-my-success-default hover:bg-my-success-hover active:bg-my-success-active disabled:bg-my-success-default/50 text-white disabled:translate-y-0 disabled:cursor-not-allowed disabled:shadow-sm;
+      }
+
+      &.warning {
+        @apply bg-my-warning-default hover:bg-my-warning-hover active:bg-my-warning-active disabled:bg-my-warning-default/50 text-white disabled:translate-y-0 disabled:cursor-not-allowed disabled:shadow-sm;
+      }
+
+      &.danger {
+        @apply bg-my-danger-default hover:bg-my-danger-hover active:bg-my-danger-active disabled:bg-my-danger-default/50 text-white disabled:translate-y-0 disabled:cursor-not-allowed disabled:shadow-sm;
+      }
+    }
+
+    &.secondary {
+      @apply border-my-primary-default hover:border-my-primary-hover active:border-my-primary-active disabled:border-my-primary-default/10 disabled:text-my-primary-default/50 text-my-primary-default hover:text-my-primary-hover active:text-my-primary-active hover:bg-my-primary-hover/10 active:bg-my-primary-active/10 border-2 bg-transparent disabled:translate-y-0 disabled:cursor-not-allowed disabled:shadow-sm;
+
+      &.info {
+        @apply border-my-info-default hover:border-my-info-hover active:border-my-info-active disabled:border-my-info-default/10 disabled:text-my-info-default/50 text-my-info-default hover:text-my-info-hover active:text-my-info-active hover:bg-my-info-hover/10 active:bg-my-info-active/10 disabled:translate-y-0 disabled:shadow-sm;
+      }
+
+      &.success {
+        @apply border-my-success-default hover:border-my-success-hover active:border-my-success-active disabled:border-my-success-default/10 disabled:text-my-success-default/50 text-my-success-default hover:text-my-success-hover active:text-my-success-active hover:bg-my-success-hover/10 active:bg-my-success-active/10 disabled:translate-y-0 disabled:shadow-sm;
+      }
+
+      &.warning {
+        @apply border-my-warning-default hover:border-my-warning-hover active:border-my-warning-active disabled:border-my-warning-default/10 disabled:text-my-warning-default/50 text-my-warning-default hover:text-my-warning-hover active:text-my-warning-active hover:bg-my-warning-hover/10 active:bg-my-warning-active/10 disabled:translate-y-0 disabled:shadow-sm;
+      }
+
+      &.danger {
+        @apply border-my-danger-default hover:border-my-danger-hover active:border-my-danger-active disabled:border-my-danger-default/10 disabled:text-my-danger-default/50 text-my-danger-default hover:text-my-danger-hover active:text-my-danger-active hover:bg-my-danger-hover/10 active:bg-my-danger-active/10 disabled:translate-y-0 disabled:shadow-sm;
+      }
+    }
+
+    & > span:not(.mat-icon) {
+      @apply font-subtitle-md truncate;
+    }
+  }
+}

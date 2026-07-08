@@ -1,0 +1,84 @@
+@let _isLoading = isLoading();
+
+<section class="mx-auto flex h-screen flex-col items-center justify-center bg-gray-50 p-4 md:p-8 dark:bg-gray-900">
+  <my-card class="w-full sm:w-auto sm:min-w-100">
+    <my-card-header>
+      <span class="my-card-header-icon mat-icon mat-icon-3xl text-my-primary-default">app_registration</span>
+      <h1 class="my-card-header-title">
+        {{ 'auth.signUp.signUpToYourAccount' | translate }}
+      </h1>
+    </my-card-header>
+    <my-card-content>
+      <form [formGroup]="signUpFormGroup" class="flex flex-col gap-4" (submit)="onSubmit()">
+        <my-form-field>
+          <label for="nameField" class="my-label">
+            {{ 'auth.signUp.yourName' | translate }}
+          </label>
+          <input
+            id="nameField"
+            type="text"
+            [placeholder]="'auth.signUp.yourName' | translate"
+            formControlName="name"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+          <my-form-error key="maxLength">
+            {{ 'common.errors.maxLength' | translate }}
+          </my-form-error>
+        </my-form-field>
+        <my-form-field>
+          <label for="emailField" class="my-label">
+            {{ 'auth.signUp.yourEmail' | translate }}
+          </label>
+          <input
+            id="emailField"
+            type="email"
+            [placeholder]="'auth.signUp.yourEmail' | translate"
+            formControlName="email"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+          <my-form-error key="email">
+            {{ 'common.errors.email' | translate }}
+          </my-form-error>
+        </my-form-field>
+        <my-form-field>
+          <label for="passwordField" class="my-label">
+            {{ 'auth.signUp.password' | translate }}
+          </label>
+          <input
+            id="passwordField"
+            type="password"
+            [placeholder]="'auth.signUp.password' | translate"
+            formControlName="password"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+        </my-form-field>
+        <button class="my-button primary w-full" [disabled]="_isLoading">
+          @if (_isLoading) {
+            {{ 'auth.signUp.signingUp' | translate }}
+            <span class="mat-icon animate-spin">progress_activity</span>
+          } @else {
+            {{ 'auth.signUp.signUp' | translate }}
+          }
+        </button>
+        <p class="font-body-sm text-my-secondary-900">
+          {{ 'auth.signUp.alreadyHaveAnAccount' | translate }}
+          <a
+            routerLink="/auth/sign-in"
+            class="font-body-sm text-my-primary-default hover:text-my-primary-hover active:text-my-primary-active cursor-pointer outline-none select-none"
+          >
+            {{ 'auth.signUp.signIn' | translate }}
+          </a>
+        </p>
+      </form>
+    </my-card-content>
+  </my-card>
+</section>

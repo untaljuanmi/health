@@ -1,3 +1,289 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+@import './app/library/styles/_my-button.css';
+@import './app/library/styles/_my-card.css';
+@import './app/library/styles/_my-dialog.css';
+@import './app/library/styles/_my-divider.css';
+@import './app/library/styles/_my-expansion-drawer.css';
+@import './app/library/styles/_my-form.css';
+@import './app/library/styles/_my-icon-button.css';
+@import './app/library/styles/_my-input.css';
+@import './app/library/styles/_my-label.css';
+@import './app/library/styles/_my-layout.css';
+@import './app/library/styles/_my-navbar.css';
+@import './app/library/styles/_my-overlay.css';
+@import './app/library/styles/_my-select.css';
+@import './app/library/styles/_my-switch.css';
+@import './app/library/styles/_my-toast.css';
+
+/* ---- Enable dark mode ------------------------------------------------------------------------ */
+@custom-variant dark (&:where(.dark, .dark *));
+/* ---------------------------------------------------------------------------------------------- */
+
+/* ---- Tailwind custom theme ------------------------------------------------------------------- */
+@theme {
+  /* Primary */
+  --color-my-primary-50: #fff3e0;
+  --color-my-primary-100: #ffe0b2;
+  --color-my-primary-200: #ffcc80;
+  --color-my-primary-300: #ffb74d;
+  --color-my-primary-400: #ffa726;
+  --color-my-primary-500: #ff9800;
+  --color-my-primary-600: #fb8c00;
+  --color-my-primary-700: #f57c00;
+  --color-my-primary-800: #ef6c00;
+  --color-my-primary-900: #e65100;
+
+  /* Secondary */
+  --color-my-secondary-50: #efebe9;
+  --color-my-secondary-100: #d7ccc8;
+  --color-my-secondary-200: #bcaaa4;
+  --color-my-secondary-300: #a1887f;
+  --color-my-secondary-400: #8d6e63;
+  --color-my-secondary-500: #795548;
+  --color-my-secondary-600: #6d4c41;
+  --color-my-secondary-700: #5d4037;
+  --color-my-secondary-800: #4e342e;
+  --color-my-secondary-900: #3e2723;
+
+  --color-my-primary-default: var(--color-my-primary-500);
+  --color-my-primary-hover: var(--color-my-primary-400);
+  --color-my-primary-active: var(--color-my-primary-600);
+
+  --color-my-secondary-default: var(--color-my-secondary-500);
+  --color-my-secondary-hover: var(--color-my-secondary-400);
+  --color-my-secondary-active: var(--color-my-secondary-600);
+  --color-my-info-default: var(--color-cyan-500);
+  --color-my-info-hover: var(--color-cyan-400);
+  --color-my-info-active: var(--color-cyan-600);
+  --color-my-success-default: var(--color-green-500);
+  --color-my-success-hover: var(--color-green-400);
+  --color-my-success-active: var(--color-green-600);
+  --color-my-warning-default: var(--color-yellow-500);
+  --color-my-warning-hover: var(--color-yellow-400);
+  --color-my-warning-active: var(--color-yellow-600);
+  --color-my-danger-default: var(--color-red-500);
+  --color-my-danger-hover: var(--color-red-400);
+  --color-my-danger-active: var(--color-red-600);
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+/* ---- Fonts faces ----------------------------------------------------------------------------- */
+/* Roboto (normal) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/roboto/Roboto-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Roboto (italic) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/roboto/Roboto-Italic-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Nothing You Could Do (normal) */
+@font-face {
+  font-family: 'Nothing You Could Do';
+  src: url('./assets/fonts/roboto/Nothing-You-Could-Do-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Material Symbols Rounded (normal) */
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  src: url('./assets/fonts/material/Material-Symbols-Rounded.ttf') format('truetype');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: block;
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+/* ---- Fonts utilities ------------------------------------------------------------------------- */
+/* Subtitle (4x-large) */
+@utility font-subtitle-4xl {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.625rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+/* Subtitle (3x-large) */
+@utility font-subtitle-3xl {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  font-weight: 700;
+}
+
+/* Subtitle (2x-large) */
+@utility font-subtitle-2xl {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+/* Subtitle (x-large) */
+@utility font-subtitle-xl {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+}
+
+/* Subtitle (large) */
+@utility font-subtitle-lg {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+/* Subtitle (medium) */
+@utility font-subtitle-md {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 700;
+}
+
+/* Subtitle (small) */
+@utility font-subtitle-sm {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+}
+
+/* Subtitle (x-small) */
+@utility font-subtitle-xs {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 700;
+}
+
+/* Body (medium) */
+@utility font-body-md {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 400;
+}
+
+/* Body (small) */
+@utility font-body-sm {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+}
+
+/* Body (x-small) */
+@utility font-body-xs {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+}
+
+/* Icon (outline) */
+@utility mat-icon {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  display: inline-block;
+  direction: ltr;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: nowrap;
+  word-wrap: normal;
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
+
+/* Icon (fill) */
+@utility mat-icon-fill {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24 !important;
+  display: inline-block;
+  direction: ltr;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: nowrap;
+  word-wrap: normal;
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
+
+/* Icon (small) */
+@utility mat-icon-sm {
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+}
+
+/* Icon (medium) */
+@utility mat-icon-md {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+/* Icon (large) */
+@utility mat-icon-lg {
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
+
+/* Icon (x-large) */
+@utility mat-icon-xl {
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
+
+/* Icon (2x-large) */
+@utility mat-icon-2xl {
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+}
+
+/* Icon (3x-large) */
+@utility mat-icon-3xl {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+/* Icon (4x-large) */
+@utility mat-icon-4xl {
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+}
+
+/* Icon (5x-large) */
+@utility mat-icon-5xl {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+/* ---------------------------------------------------------------------------------------------- */
+
+html,
+body {
+  @apply font-body-md bg-my-secondary-50 dark:bg-my-secondary-900 text-my-secondary-900 dark:text-my-secondary-50 h-dvh w-dvw;
+}
+
+body {
+  @apply overflow-hidden;
+}

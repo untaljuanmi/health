@@ -1,0 +1,8 @@
+@for (toast of toasts(); track toast.id) {
+  <my-toast
+    [id]="toast.id"
+    [message]="toast.message"
+    [type]="toast.type"
+    [visible]="toast.visible"
+  />
+}

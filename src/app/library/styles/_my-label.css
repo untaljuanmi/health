@@ -1,0 +1,5 @@
+@layer components {
+  label.my-label {
+    @apply font-subtitle-md text-my-secondary-900 select-none dark:text-white;
+  }
+}

@@ -1,0 +1,15 @@
+<nav
+  class="bg-my-secondary-500/50 pointer-events-auto flex flex-row gap-2 overflow-hidden rounded-full p-2 backdrop-blur-xs"
+>
+  <button class="my-navbar-button" [routerLinkActive]="'my-navbar-button-active'" [routerLink]="['/summary']">
+    <span class="mat-icon mat-icon-3xl">home</span>
+    <span>{{ 'summary.title' | translate }}</span>
+  </button>
+  <button class="my-navbar-button" [routerLinkActive]="'my-navbar-button-active'" [routerLink]="['/tasks']">
+    <span class="mat-icon mat-icon-3xl">checklist</span>
+    <span>{{ 'tasks.title' | translate }}</span>
+  </button>
+</nav>
+<button class="my-button primary pointer-events-auto h-14 min-h-14 w-14 min-w-14 justify-center rounded-full p-2">
+  <span class="mat-icon mat-icon-3xl">add_task</span>
+</button>

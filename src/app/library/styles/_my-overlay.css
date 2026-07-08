@@ -1,0 +1,29 @@
+@layer components {
+  .my-overlay-backdrop {
+    @apply bg-black/25;
+  }
+
+  .cdk-overlay-container:has(.my-dialog-panel) {
+    @apply z-10000;
+  }
+
+  .cdk-global-overlay-wrapper:has(.my-dialog-panel) {
+    @apply p-4 md:p-8;
+  }
+
+  .my-dialog-panel {
+    @apply translate-y-0 translate-z-0 scale-100 overflow-hidden rounded-lg bg-gray-50 opacity-100 shadow-lg transition-all duration-300 dark:bg-gray-900;
+
+    & > * {
+      @apply w-full;
+    }
+
+    &.my-dialog-panel-exit-animation {
+      @apply -translate-y-50 -translate-z-350 scale-0 opacity-0;
+    }
+
+    @starting-style {
+      @apply -translate-y-50 -translate-z-350 scale-0 opacity-0;
+    }
+  }
+}

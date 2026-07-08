@@ -1,0 +1,17 @@
+@layer components {
+  my-card {
+    @apply relative flex flex-col overflow-hidden rounded-lg bg-white p-0 shadow-lg dark:bg-black;
+
+    my-card-header {
+      @apply flex flex-col;
+    }
+
+    my-card-content {
+      @apply relative m-0 flex flex-1 flex-col p-0;
+    }
+
+    my-card-footer {
+      @apply mt-3 flex flex-wrap items-center gap-3;
+    }
+  }
+}

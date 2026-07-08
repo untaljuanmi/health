@@ -1,0 +1,25 @@
+@let _icon = icon();
+@let _title = title();
+@let _description = description();
+
+<my-dialog>
+  <my-dialog-header>
+    <span class="mat-icon mat-icon-3xl text-my-primary-default">
+      {{ _icon }}
+    </span>
+    {{ _title | translate }}
+  </my-dialog-header>
+  <my-dialog-content>
+    <span class="font-body-md">
+      {{ _description | translate }}
+    </span>
+  </my-dialog-content>
+  <my-dialog-footer>
+    <button class="my-button secondary" (click)="onClickCancel()">
+      {{ 'common.buttons.cancel' | translate }}
+    </button>
+    <button class="my-button primary" (click)="onClickAccept()">
+      {{ 'common.buttons.accept' | translate }}
+    </button>
+  </my-dialog-footer>
+</my-dialog>

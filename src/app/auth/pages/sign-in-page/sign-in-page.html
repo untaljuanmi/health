@@ -1,0 +1,68 @@
+@let _isLoading = isLoading();
+
+<section
+  class="mx-auto flex h-screen flex-col items-center justify-center bg-gray-50 p-4 md:p-8 dark:bg-gray-900"
+>
+  <my-card class="w-full sm:w-auto sm:min-w-100">
+    <my-card-header>
+      <span class="my-card-header-icon mat-icon mat-icon-3xl text-my-primary-default">login</span>
+      <h1 class="my-card-header-title">
+        {{ 'auth.signIn.signInToYourAccount' | translate }}
+      </h1>
+    </my-card-header>
+    <my-card-content>
+      <form [formGroup]="signInFormGroup" class="flex flex-col gap-4" (submit)="onSubmit()">
+        <my-form-field>
+          <label for="emailField" class="my-label">
+            {{ 'auth.signIn.yourEmail' | translate }}
+          </label>
+          <input
+            id="emailField"
+            type="email"
+            [placeholder]="'auth.signIn.yourEmail' | translate"
+            formControlName="email"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+          <my-form-error key="email">
+            {{ 'common.errors.email' | translate }}
+          </my-form-error>
+        </my-form-field>
+        <my-form-field>
+          <label for="passwordField" class="my-label">
+            {{ 'auth.signIn.password' | translate }}
+          </label>
+          <input
+            id="passwordField"
+            type="password"
+            [placeholder]="'auth.signIn.password' | translate"
+            formControlName="password"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+        </my-form-field>
+        <button class="my-button primary w-full" [disabled]="_isLoading">
+          @if (_isLoading) {
+            {{ 'auth.signIn.signingIn' | translate }}
+            <span class="mat-icon animate-spin">progress_activity</span>
+          } @else {
+            {{ 'auth.signIn.signIn' | translate }}
+          }
+        </button>
+        <p class="font-body-sm">
+          {{ 'auth.signIn.doNotHaveAnAccountYet' | translate }}
+          <a
+            routerLink="/auth/sign-up"
+            class="font-body-sm text-my-primary-default hover:text-my-primary-hover active:text-my-primary-active cursor-pointer outline-none select-none"
+          >
+            {{ 'auth.signIn.signUp' | translate }}
+          </a>
+        </p>
+      </form>
+    </my-card-content>
+  </my-card>
+</section>

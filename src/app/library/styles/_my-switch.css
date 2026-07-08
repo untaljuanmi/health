@@ -1,0 +1,53 @@
+@layer components {
+  my-switch {
+    @apply flex items-center gap-1.5;
+
+    label.my-label {
+      @apply text-my-secondary-900 hover:text-my-primary-hover dark:hover:text-my-primary-hover active:text-my-primary-active dark:active:text-my-primary-active cursor-pointer dark:text-white;
+
+      &:hover + label.my-switch-label:has(.my-switch:not(:checked):not(:disabled)) .my-slider {
+        @apply bg-my-secondary-400;
+      }
+
+      &:hover + label.my-switch-label:has(.my-switch:checked:not(:disabled)) .my-slider {
+        @apply bg-my-primary-hover dark:bg-my-primary-hover;
+      }
+
+      &:active + label.my-switch-label:has(.my-switch:not(:checked):not(:disabled)) .my-slider {
+        @apply bg-my-secondary-600;
+      }
+
+      &:active + label.my-switch-label:has(.my-switch:checked:not(:disabled)) .my-slider {
+        @apply bg-my-primary-active dark:bg-my-primary-active;
+      }
+
+      &.disabled {
+        @apply text-my-secondary-600 cursor-default;
+      }
+    }
+
+    .my-slider:before {
+      @apply bg-my-secondary-50 dark:bg-my-secondary-900 absolute bottom-0.75 left-1 h-3.5 w-3.5 rounded-full transition-all duration-300 content-[''];
+    }
+
+    .my-switch + .my-slider {
+      @apply bg-my-secondary-500 hover:bg-my-secondary-400 active:bg-my-secondary-600 cursor-pointer;
+    }
+
+    .my-switch:checked + .my-slider {
+      @apply bg-my-primary-default dark:bg-my-primary-default hover:bg-my-primary-hover dark:hover:bg-my-primary-hover active:bg-my-primary-active dark:active:bg-my-primary-active;
+
+      &:before {
+        @apply translate-x-4.75;
+      }
+    }
+
+    .my-switch:disabled + .my-slider {
+      @apply bg-my-secondary-300 cursor-default;
+    }
+
+    .my-switch:checked:disabled + .my-slider {
+      @apply bg-my-primary-default/30 dark:bg-my-primary-default/30 cursor-default;
+    }
+  }
+}

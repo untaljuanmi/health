@@ -1,13 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { afterNextRender, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+
+import { AppUpdateState } from './core';
+import { MyToastContainer } from './library';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TranslatePipe],
+  imports: [RouterOutlet, MyToastContainer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('health');
+  private readonly _appUpdateState = inject(AppUpdateState);
+
+  constructor() {
+    afterNextRender(() => document.addEventListener('touchstart', () => null, { passive: true }));
+  }
 }

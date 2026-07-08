@@ -1,0 +1,19 @@
+@let _type = type();
+
+<span class="mat-icon mat-icon-md ml-1">
+  @if (_type === 'info') {
+    info
+  } @else if (_type === 'success') {
+    check_circle
+  } @else if (_type === 'warning') {
+    error
+  } @else {
+    block
+  }
+</span>
+<span class="font-body-sm line-clamp-1">
+  {{ message() }}
+</span>
+<button class="my-icon-button ghost" (click)="onClickRemoveToast()">
+  <span class="mat-icon mat-icon-md">close</span>
+</button>

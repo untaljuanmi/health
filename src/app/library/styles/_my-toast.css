@@ -1,0 +1,69 @@
+@layer components {
+  my-toast-container {
+    @apply pointer-events-none fixed z-50 flex h-fit max-h-dvh w-dvw flex-col flex-wrap;
+
+    &.tl my-toast.my-toast-visible,
+    &.tc my-toast.my-toast-visible,
+    &.tr my-toast.my-toast-visible {
+      @apply mt-4;
+    }
+
+    &.bl my-toast.my-toast-visible,
+    &.bc my-toast.my-toast-visible,
+    &.br my-toast.my-toast-visible {
+      @apply mb-4;
+    }
+
+    &.tl {
+      @apply top-0 left-4;
+    }
+
+    &.tc {
+      @apply top-0 right-1/2 translate-x-1/2 items-center;
+    }
+
+    &.tr {
+      @apply top-0 right-4 items-end;
+    }
+
+    &.bl {
+      @apply bottom-16 left-4 md:bottom-0;
+    }
+
+    &.bc {
+      @apply right-1/2 bottom-16 translate-x-1/2 items-center md:bottom-0;
+    }
+
+    &.br {
+      @apply right-4 bottom-16 items-end md:bottom-0;
+    }
+  }
+
+  my-toast {
+    @apply pointer-events-auto mx-2 mt-0 mb-0 hidden max-h-0 w-fit scale-0 items-center justify-center gap-3 rounded-full bg-white p-0 text-white opacity-0 shadow-md transition-all transition-discrete duration-300;
+
+    &.my-toast-visible {
+      @apply flex max-h-11 scale-100 p-3 opacity-100;
+
+      @starting-style {
+        @apply my-0 max-h-0 scale-0 p-0 opacity-0;
+      }
+    }
+
+    &.my-toast-info {
+      @apply bg-my-info-default;
+    }
+
+    &.my-toast-success {
+      @apply bg-my-success-default;
+    }
+
+    &.my-toast-warning {
+      @apply bg-my-warning-default;
+    }
+
+    &.my-toast-error {
+      @apply bg-my-danger-default;
+    }
+  }
+}

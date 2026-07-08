@@ -1,0 +1,25 @@
+@layer components {
+  my-form-field {
+    @apply relative flex min-w-35.5 flex-col;
+
+    label.my-label {
+      @apply pb-1.5;
+    }
+
+    &.my-form-required {
+      label.my-label {
+        @apply after:text-my-primary-default after:content-['_*'];
+      }
+    }
+
+    &.my-form-error {
+      label.my-label {
+        @apply after:text-red-700 after:content-['_*'];
+      }
+
+      input.my-input {
+        @apply border-2 border-red-700! text-red-700!;
+      }
+    }
+  }
+}

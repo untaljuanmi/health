@@ -1,0 +1,5 @@
+@layer components {
+  hr.my-divider {
+    @apply text-my-secondary-100 border-t;
+  }
+}

@@ -1,0 +1,21 @@
+@layer components {
+  my-expansion-drawer {
+    @apply flex h-full w-full flex-1 flex-col-reverse md:flex-row;
+
+    .my-expansion-drawer-launcher-container {
+      @apply md:bg-my-secondary-500/50 fixed z-1 flex w-full flex-col overflow-hidden bg-transparent p-2 shadow-none transition-[flex-basis] duration-500 md:relative md:w-auto md:p-4 md:shadow-lg;
+
+      .my-expansion-drawer-launcher {
+        @apply bg-my-secondary-500/50 flex flex-col overflow-hidden rounded-full p-2 backdrop-blur-xs md:rounded-none md:bg-transparent md:p-0;
+      }
+    }
+
+    .my-expansion-drawer-content-container {
+      @apply flex flex-1 flex-col overflow-hidden;
+
+      .my-expansion-drawer-content {
+        @apply flex flex-1 flex-col overflow-hidden;
+      }
+    }
+  }
+}

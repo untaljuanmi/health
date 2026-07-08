@@ -1,0 +1,9 @@
+@layer components {
+  app-layout {
+    @apply block h-full w-full overflow-auto px-4 pt-4 pb-26 md:p-8;
+
+    main {
+      @apply flex flex-col gap-4 select-none;
+    }
+  }
+}
