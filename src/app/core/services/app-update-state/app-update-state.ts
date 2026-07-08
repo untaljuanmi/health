@@ -23,6 +23,7 @@ export class AppUpdateState {
 
     this._swUpdate.versionUpdates.subscribe((event: VersionEvent): void => {
       if (event.type === 'VERSION_READY') {
+        console.log('⬇️ New version available!');
         const _myDialogRef: MyDialogRefModel = this._myDialogState.open(ConfirmDialog, {
           data: {
             icon: 'deployed_code_update',
@@ -46,6 +47,9 @@ export class AppUpdateState {
       return;
     }
 
-    interval(6 * 60 * 60 * 1000).subscribe((): void => void this._swUpdate.checkForUpdate());
+    interval(60 * 1000).subscribe((): void => {
+      console.log('💭 Checking for new versions...');
+      void this._swUpdate.checkForUpdate();
+    });
   }
 }
