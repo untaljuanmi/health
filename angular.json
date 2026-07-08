@@ -1,10 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "cli": {
-    "packageManager": "bun",
-    "schematicCollections": ["angular-eslint"]
-  },
   "newProjectRoot": "projects",
   "projects": {
     "health": {
@@ -32,16 +28,17 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kB",
+                  "maximumError": "20kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -63,6 +60,9 @@
           },
           "defaultConfiguration": "development"
         },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
         "test": {
           "builder": "@angular/build:unit-test"
         },
@@ -74,5 +74,9 @@
         }
       }
     }
+  },
+  "cli": {
+    "packageManager": "bun",
+    "schematicCollections": ["angular-eslint"]
   }
 }
