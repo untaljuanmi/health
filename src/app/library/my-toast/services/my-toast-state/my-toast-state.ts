@@ -1,12 +1,10 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Service, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MyToastInterface } from '../../interfaces';
 import { MyToastType } from '../../types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class MyToastState {
   private readonly _translateService = inject(TranslateService);
 

@@ -1,13 +1,11 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { interval } from 'rxjs';
 
 import { MyDialogRefModel, MyDialogState } from '../../../library';
 import { ConfirmDialog } from '../../../shared';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AppUpdateState {
   private readonly _myDialogState = inject(MyDialogState);
 
@@ -33,8 +31,9 @@ export class AppUpdateState {
           },
         });
 
-        _myDialogRef.closed.subscribe((shouldReload: unknown): void => {
+        _myDialogRef.closed.subscribe(async (shouldReload: unknown): Promise<void> => {
           if (shouldReload) {
+            await this._swUpdate.activateUpdate();
             window.location.reload();
           }
         });

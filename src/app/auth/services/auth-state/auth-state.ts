@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Service, signal } from '@angular/core';
 import {
   Auth,
   authState,
@@ -14,9 +14,7 @@ import { Observable } from 'rxjs';
 import { AppState } from '../../../core';
 import { MyToastState } from '../../../library';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AuthState {
   private readonly _auth = inject(Auth);
   private readonly _router = inject(Router);

@@ -30,9 +30,9 @@ export interface SignUpInterface {
 export default class SignUpPage {
   private readonly _formBuilder = inject(FormBuilder);
 
-  private readonly _authService = inject(AuthState);
+  private readonly _authState = inject(AuthState);
 
-  private _isLoading = this._authService.isLoading;
+  private _isLoading = this._authState.isLoading;
 
   isLoading = computed(() => {
     const _isLoading = this._isLoading();
@@ -61,7 +61,7 @@ export default class SignUpPage {
       return;
     }
 
-    this._authService.signUp(name, email, password);
+    this._authState.signUp(name, email, password);
   }
 
   private markAllAsTouched(): void {

@@ -1,14 +1,12 @@
 import { ComponentType, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { inject, Injectable, Injector } from '@angular/core';
+import { inject, Injector, Service } from '@angular/core';
 
 import { MY_DIALOG_TOKEN } from '../../consts';
 import { MyDialogConfigInterface } from '../../interfaces';
 import { MyDialogRefModel } from '../../models';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class MyDialogState {
   private readonly _overlay = inject(Overlay);
   private readonly _injector = inject(Injector);
