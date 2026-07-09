@@ -11,6 +11,7 @@ import {
   MyDialogRefModel,
   MyFormError,
   MyFormField,
+  MyToastState,
 } from '../../../../library';
 import { DrugInterface, DrugMeasureEnum } from '../../../../shared/models';
 import { DrugsState } from '../../../../state';
@@ -38,6 +39,7 @@ export class DrugFormDialog {
 
   private readonly _myDialogRef = inject(MyDialogRefModel);
   private readonly _myDialogToken = inject(MY_DIALOG_TOKEN) as DrugFormDialogData;
+  private readonly _myToastState = inject(MyToastState);
 
   private readonly _drugsState = inject(DrugsState);
 
@@ -67,19 +69,29 @@ export class DrugFormDialog {
     const drugId: string | null = drug?.id ?? null;
 
     if (!!drug && !!drugId) {
-      this._drugsState.updateDrug(drugId, payload).then(() => this._myDialogRef.close());
+      this._drugsState
+        .updateDrug(drugId, payload)
+        .then(() => this._myToastState.success('drugs.success.drugUpdated'))
+        .then(() => this._myDialogRef.close())
+        .catch(() => this._myToastState.error('drugs.error.drugNotUpdated'));
+
       return;
     }
 
-    this._drugsState.createDrug(payload).then(() => this._myDialogRef.close());
+    this._drugsState
+      .createDrug(payload)
+
+      .then(() => this._myToastState.success('drugs.success.drugCreated'))
+      .then(() => this._myDialogRef.close())
+      .catch(() => this._myToastState.error('drugs.error.drugNotCreated'));
   }
 
   private buildFormGroup(): FormGroup {
     return this._formBuilder.group({
       name: this._formBuilder.control(this.drug()?.name ?? null, [Validators.required]),
       description: this._formBuilder.control(this.drug()?.description ?? null),
-      measure: this._formBuilder.control(this.drug()?.measure ?? null, [Validators.required]),
-      quantity: this._formBuilder.control(this.drug()?.quantity ?? null, [Validators.required]),
+      measure: this._formBuilder.control(this.drug()?.measure ?? DrugMeasureEnum.Mg, [Validators.required]),
+      quantity: this._formBuilder.control(this.drug()?.quantity ?? 10, [Validators.required]),
       notes: this._formBuilder.control(this.drug()?.notes ?? null),
     });
   }

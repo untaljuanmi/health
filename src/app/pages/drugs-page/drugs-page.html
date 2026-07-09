@@ -1,7 +1,20 @@
-@for (drug of drugs(); track $index) {
-  {{ drug.name }}
-} @empty {
-  <p>No drugs found</p>
-}
+<main>
+  <div class="page-header">
+    <h1 class="page-header-title">
+      <span class="mat-icon mat-icon-3xl text-my-primary-default">pill</span>
+      {{ 'drugs.title' | translate }}
+    </h1>
+    <button class="my-button primary pl-9" (click)="onClickAddDrug()">
+      <span class="mat-icon mat-icon-2xl">add</span>
+      {{ 'common.buttons.add' | translate }}
+    </button>
+  </div>
 
-<button class="my-button primary" (click)="onClickAddDrug()">Add</button>
+  <div class="page-content">
+    <div class="page-content-box">
+      @for (_drug of drugs(); track $index) {
+        <app-drug-card [drug]="_drug" />
+      }
+    </div>
+  </div>
+</main>

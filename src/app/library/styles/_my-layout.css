@@ -1,9 +1,25 @@
 @layer components {
   app-layout {
-    @apply block h-full w-full overflow-auto px-4 pt-4 pb-26 md:p-8;
+    @apply block h-full w-full overflow-auto md:p-8;
 
     main {
-      @apply flex flex-col gap-4 select-none;
+      @apply flex flex-col select-none;
+
+      .page-header {
+        @apply bg-my-secondary-50 sticky top-0 flex items-center justify-between gap-3 p-4 shadow-md;
+
+        .page-header-title {
+          @apply font-subtitle-4xl text-my-secondary-900 flex items-center gap-2 select-text;
+        }
+      }
+
+      .page-content {
+        @apply flex flex-1 flex-col px-4 pt-4 pb-26;
+
+        .page-content-box {
+          @apply bg-my-secondary-100 flex flex-1 flex-col gap-4 rounded-2xl p-4;
+        }
+      }
     }
   }
 }

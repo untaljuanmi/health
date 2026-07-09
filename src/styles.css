@@ -194,6 +194,14 @@
   font-weight: 400;
 }
 
+/* Body (2x-small) */
+@utility font-body-2xs {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  font-weight: 400;
+}
+
 /* Icon (outline) */
 @utility mat-icon {
   font-family: 'Material Symbols Rounded', sans-serif;

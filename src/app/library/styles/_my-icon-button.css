@@ -9,5 +9,9 @@
     &.ghost {
       @apply rounded-full bg-transparent text-white hover:bg-white/15 active:bg-white/30 disabled:bg-transparent disabled:text-white/50;
     }
+
+    &.danger {
+      @apply hover:text-my-danger-hover active:text-my-danger-active text-my-secondary-900 disabled:text-gray-400;
+    }
   }
 }

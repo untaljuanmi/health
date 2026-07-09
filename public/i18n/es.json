@@ -2,6 +2,7 @@
   "title": "Mi Salud",
   "common": {
     "buttons": {
+      "add": "Añadir",
       "cancel": "Cancelar",
       "accept": "Aceptar",
       "save": "Guardar",
@@ -61,6 +62,22 @@
     "title": "Eventos"
   },
   "drugs": {
-    "title": "Medicamentos"
+    "title": "Medicamentos",
+    "confirm": {
+      "delete": {
+        "title": "¿Quieres eliminar este medicamento?",
+        "description": "Esta acción no es irreversible. El medicamente será eliminado inmediatamente de la base de datos."
+      }
+    },
+    "success": {
+      "drugCreated": "El medicamento ha sido creado correctamente",
+      "drugUpdated": "El medicamento ha sido actualizado correctamente",
+      "drugDeleted": "El medicamento ha sido eliminado correctamente"
+    },
+    "error": {
+      "drugNotCreated": "Ha ocurrido un error al crear el medicamento",
+      "drugNotUpdated": "Ha ocurrido un error al actualizar el medicamento",
+      "drugNotDeleted": "Ha ocurrido un error al eliminar el medicamento"
+    }
   }
 }
