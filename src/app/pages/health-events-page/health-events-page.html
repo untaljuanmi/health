@@ -1,0 +1,5 @@
+@for (healthEvent of healthEvents(); track $index) {
+  {{ healthEvent.title }}
+} @empty {
+  <p>No health events found</p>
+}

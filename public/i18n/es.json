@@ -56,5 +56,11 @@
   },
   "home": {
     "title": "Inicio"
+  },
+  "healthEvents": {
+    "title": "Eventos"
+  },
+  "drugs": {
+    "title": "Medicamentos"
   }
 }

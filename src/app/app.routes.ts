@@ -18,6 +18,16 @@ export const routes: Routes = [
         path: 'home',
         loadChildren: () => import('./pages/home-page/home-page.routes'),
       },
+      {
+        canActivateChild: [privateGuard()],
+        path: 'health-events',
+        loadChildren: () => import('./pages/health-events-page/health-events-page.routes'),
+      },
+      {
+        canActivateChild: [privateGuard()],
+        path: 'drugs',
+        loadChildren: () => import('./pages/drugs-page/drugs-page.routes'),
+      },
       { path: '**', redirectTo: '/home', pathMatch: 'full' },
     ],
   },

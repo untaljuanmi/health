@@ -1,0 +1,5 @@
+@for (drug of drugs(); track $index) {
+  {{ drug.name }}
+} @empty {
+  <p>No drugs found</p>
+}

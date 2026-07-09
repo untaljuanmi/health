@@ -55,6 +55,12 @@
     },
     "home": {
       "title": "Home"
+    },
+    "healthEvents": {
+      "title": "Events"
+    },
+    "drugs": {
+      "title": "Drugs"
     }
   }
 }

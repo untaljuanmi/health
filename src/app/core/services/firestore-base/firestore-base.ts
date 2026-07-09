@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export abstract class FirestoreState<T extends { id?: string | null }> {
+export abstract class FirestoreBase<T extends { id?: string | null }> {
   private readonly _firestore = inject(Firestore);
 
   protected readonly _collectionName!: string;
