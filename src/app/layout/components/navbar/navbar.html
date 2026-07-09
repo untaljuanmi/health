@@ -13,11 +13,14 @@
     <span class="mat-icon mat-icon-3xl">pill</span>
     <span>{{ 'drugs.title' | translate }}</span>
   </button>
-  <button class="my-navbar-button" (click)="onClickSignOut()">
-    <span class="mat-icon mat-icon-3xl">logout</span>
-    <span>{{ 'auth.signOut' | translate }}</span>
-  </button>
+  <!--  <button class="my-navbar-button" (click)="onClickSignOut()">-->
+  <!--    <span class="mat-icon mat-icon-3xl">logout</span>-->
+  <!--    <span>{{ 'auth.signOut' | translate }}</span>-->
+  <!--  </button>-->
 </nav>
-<button class="my-button primary pointer-events-auto h-14 min-h-14 w-14 min-w-14 justify-center rounded-full p-2">
+<button
+  class="my-button primary pointer-events-auto h-14 min-h-14 w-14 min-w-14 justify-center rounded-full p-2"
+  (click)="onClickAddHealthEvent()"
+>
   <span class="mat-icon mat-icon-3xl">calendar_add_on</span>
 </button>

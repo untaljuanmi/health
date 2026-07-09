@@ -3,6 +3,7 @@
   "common": {
     "buttons": {
       "add": "Añadir",
+      "record": "Registrar",
       "cancel": "Cancelar",
       "accept": "Aceptar",
       "save": "Guardar",
@@ -59,10 +60,50 @@
     "title": "Inicio"
   },
   "healthEvents": {
-    "title": "Eventos"
+    "title": "Eventos",
+    "noEvents": "No hay eventos de salud registrados",
+    "everythingSeemsAlright": "¡Parece que todo marcha correctamente!",
+    "painType": {
+      "headache": "Migraña",
+      "nausea": "Náuseas",
+      "vomiting": "Vómitos",
+      "diarrhea": "Diarrea"
+    },
+    "form": {
+      "addHealthEvent": "Registrar evento de salud",
+      "editHealthEvent": "Editar evento de salud",
+      "title": "Título",
+      "description": "Descripción",
+      "painLevel": "Nivel de dolor"
+    },
+    "confirm": {
+      "delete": {
+        "title": "¿Quieres eliminar este evento?",
+        "description": "Esta acción no es irreversible. El evento será eliminado inmediatamente de la base de datos."
+      }
+    },
+    "success": {
+      "healthEventCreated": "El evento ha sido registrado correctamente",
+      "healthEventUpdated": "El evento ha sido actualizado correctamente",
+      "healthEventDeleted": "El evento ha sido eliminado correctamente"
+    },
+    "error": {
+      "healthEventNotCreated": "Ha ocurrido un error al registrar el evento",
+      "healthEventNotUpdated": "Ha ocurrido un error al actualizar el evento",
+      "healthEventNotDeleted": "Ha ocurrido un error al eliminar el evento"
+    }
   },
   "drugs": {
     "title": "Medicamentos",
+    "noDrugs": "No hay medicamentos registrados",
+    "maybeCreateOne": "¿Por qué no añades uno desde el botón de la cabecera?",
+    "form": {
+      "addDrug": "Añadir medicamento",
+      "editDrug": "Editar medicamento",
+      "name": "Nombre",
+      "description": "Descripción",
+      "quantity": "Cantidad"
+    },
     "confirm": {
       "delete": {
         "title": "¿Quieres eliminar este medicamento?",
@@ -70,12 +111,12 @@
       }
     },
     "success": {
-      "drugCreated": "El medicamento ha sido creado correctamente",
+      "drugCreated": "El medicamento ha sido registrado correctamente",
       "drugUpdated": "El medicamento ha sido actualizado correctamente",
       "drugDeleted": "El medicamento ha sido eliminado correctamente"
     },
     "error": {
-      "drugNotCreated": "Ha ocurrido un error al crear el medicamento",
+      "drugNotCreated": "Ha ocurrido un error al registrar el medicamento",
       "drugNotUpdated": "Ha ocurrido un error al actualizar el medicamento",
       "drugNotDeleted": "Ha ocurrido un error al eliminar el medicamento"
     }

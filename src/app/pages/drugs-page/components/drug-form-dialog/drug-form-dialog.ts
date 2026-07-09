@@ -91,7 +91,7 @@ export class DrugFormDialog {
       name: this._formBuilder.control(this.drug()?.name ?? null, [Validators.required]),
       description: this._formBuilder.control(this.drug()?.description ?? null),
       measure: this._formBuilder.control(this.drug()?.measure ?? DrugMeasureEnum.Mg, [Validators.required]),
-      quantity: this._formBuilder.control(this.drug()?.quantity ?? 10, [Validators.required]),
+      quantity: this._formBuilder.control(this.drug()?.quantity ?? 10, [Validators.required, Validators.min(1)]),
       notes: this._formBuilder.control(this.drug()?.notes ?? null),
     });
   }

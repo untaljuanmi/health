@@ -4,7 +4,6 @@ import { DrugInterface } from '../drug/drug.model';
 
 export enum HealthEventPainTypeEnum {
   Headache = 'headache',
-  Stomachache = 'stomachache',
   Nausea = 'nausea',
   Vomiting = 'vomiting',
   Diarrhea = 'diarrhea',

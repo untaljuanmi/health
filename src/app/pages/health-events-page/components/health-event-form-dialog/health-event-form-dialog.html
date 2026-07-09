@@ -1,26 +1,26 @@
 @let _loading = loading();
-@let _drug = drug();
+@let _healthEvent = healthEvent();
 
 <my-dialog>
   <my-dialog-header>
     <span class="mat-icon mat-icon-3xl text-my-primary-default">
-      {{ _drug ? 'border_color' : 'pill' }}
+      {{ _healthEvent ? 'border_color' : 'event' }}
     </span>
-    {{ (_drug ? 'drugs.form.editDrug' : 'drugs.form.addDrug') | translate }}
+    {{ (_healthEvent ? 'healthEvents.form.editHealthEvent' : 'healthEvents.form.addHealthEvent') | translate }}
   </my-dialog-header>
 
   <my-dialog-content>
     <form [formGroup]="formGroup" class="flex flex-col gap-4">
-      <!-- Name -->
+      <!-- Title -->
       <my-form-field>
-        <label for="nameField" class="my-label">
-          {{ 'drugs.form.name' | translate }}
+        <label for="titleField" class="my-label">
+          {{ 'healthEvents.form.title' | translate }}
         </label>
         <input
-          id="nameField"
+          id="titleField"
           type="text"
-          [placeholder]="'drugs.form.name' | translate"
-          formControlName="name"
+          [placeholder]="'healthEvents.form.title' | translate"
+          formControlName="title"
           class="my-input"
         />
         <my-form-error key="required">
@@ -31,48 +31,54 @@
       <!-- Description -->
       <my-form-field>
         <label for="descriptionField" class="my-label">
-          {{ 'drugs.form.description' | translate }}
+          {{ 'healthEvents.form.description' | translate }}
         </label>
         <input
           id="descriptionField"
           type="text"
-          [placeholder]="'drugs.form.description' | translate"
+          [placeholder]="'healthEvents.form.description' | translate"
           formControlName="description"
           class="my-input"
         />
       </my-form-field>
 
-      <!-- Quantity and measure -->
+      <!-- Pain type and level -->
       <div class="flex flex-col gap-1.5">
         <label
-          for="quantityField"
+          for="painLevelField"
           class="my-label after:content-['_*']"
-          [class.after:text-my-primary-default]="formGroup?.get('quantity')?.valid"
-          [class.after:text-red-700]="formGroup?.get('quantity')?.invalid"
+          [class.after:text-my-primary-default]="formGroup?.get('painLevel')?.valid"
+          [class.after:text-red-700]="formGroup?.get('painLevel')?.invalid"
         >
-          {{ 'drugs.form.quantity' | translate }}
+          {{ 'healthEvents.form.painLevel' | translate }}
         </label>
         <div class="flex items-start gap-4">
           <my-form-field class="flex-1 overflow-hidden">
             <input
-              id="quantityField"
+              id="painLevelField"
               type="number"
-              [min]="1"
-              [placeholder]="'drugs.form.quantity' | translate"
-              formControlName="quantity"
+              [min]="0"
+              [max]="10"
+              [placeholder]="'healthEvents.form.painLevel' | translate"
+              formControlName="painLevel"
               class="my-input"
             />
             <my-form-error key="required">
               {{ 'common.errors.required' | translate }}
             </my-form-error>
             <my-form-error key="min">
-              {{ 'common.errors.min' | translate: { value: 1 } }}
+              {{ 'common.errors.min' | translate: { value: 0 } }}
+            </my-form-error>
+            <my-form-error key="max">
+              {{ 'common.errors.max' | translate: { value: 10 } }}
             </my-form-error>
           </my-form-field>
           <my-form-field>
-            <select id="measureField" formControlName="measure" class="my-select">
-              @for (measure of measures(); track $index) {
-                <option [value]="measure">{{ measure }}</option>
+            <select id="painTypeField" formControlName="painType" class="my-select">
+              @for (painType of painTypes(); track $index) {
+                <option [value]="painType">
+                  {{ `healthEvents.painType.${painType}` | translate }}
+                </option>
               }
             </select>
             <my-form-error key="required">

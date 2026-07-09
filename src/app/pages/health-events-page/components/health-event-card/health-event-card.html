@@ -1,0 +1,18 @@
+@let _healthEvent = healthEvent();
+<div class="bg-my-secondary-50 flex flex-col gap-2 rounded-xl p-3 shadow-sm">
+  <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center gap-3">
+      <span class="font-subtitle-lg select-text">{{ _healthEvent.title }}</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="my-icon-button danger" (click)="onClickDeleteHealthEvent(_healthEvent)">
+        <span class="mat-icon">delete</span>
+      </button>
+      <button class="my-icon-button primary" (click)="onClickUpdateHealthEvent(_healthEvent)">
+        <span class="mat-icon">edit</span>
+      </button>
+    </div>
+  </div>
+  <hr class="my-divider" />
+  <span class="font-body-md select-text">{{ _healthEvent.description }}</span>
+</div>
