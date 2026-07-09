@@ -1,5 +1,5 @@
 import { Service, Signal, signal } from '@angular/core';
-import { DocumentData } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference } from '@angular/fire/firestore';
 import { finalize, map, tap } from 'rxjs';
 
 import { FirestoreBase } from '../../core';
@@ -33,6 +33,10 @@ export class DrugsState extends FirestoreBase<DrugInterface> {
         finalize(() => this._loading.set(false))
       )
       .subscribe();
+  }
+
+  createDrug(payload: DrugInterface): Promise<DocumentReference> {
+    return this.add(payload);
   }
 
   updateDrug(id: string, payload: DrugInterface): Promise<void> {

@@ -1,5 +1,5 @@
 import { Service, Signal, signal } from '@angular/core';
-import { DocumentData } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference } from '@angular/fire/firestore';
 import { finalize, map, tap } from 'rxjs';
 
 import { FirestoreBase } from '../../core';
@@ -33,6 +33,10 @@ export class HealthEventsState extends FirestoreBase<HealthEventInterface> {
         finalize(() => this._loading.set(false))
       )
       .subscribe();
+  }
+
+  createHealthEvent(payload: HealthEventInterface): Promise<DocumentReference> {
+    return this.add(payload);
   }
 
   updateHealthEvent(id: string, payload: HealthEventInterface): Promise<void> {

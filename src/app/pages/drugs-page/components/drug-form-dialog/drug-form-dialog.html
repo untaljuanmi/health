@@ -1,0 +1,92 @@
+@let _loading = loading();
+@let _drug = drug();
+
+<my-dialog>
+  <my-dialog-header>
+    <span class="mat-icon mat-icon-3xl text-my-primary-default">
+      {{ _drug ? 'border_color' : 'add_task' }}
+    </span>
+    {{ (_drug ? 'tasks.form.editTask' : 'tasks.form.newTask') | translate }}
+  </my-dialog-header>
+  <my-dialog-content>
+    <form [formGroup]="formGroup" class="flex flex-col gap-4">
+      <!-- Name -->
+      <my-form-field>
+        <label for="nameField" class="my-label">
+          {{ 'tasks.form.name' | translate }}
+        </label>
+        <input
+          id="nameField"
+          type="text"
+          [placeholder]="'tasks.form.name' | translate"
+          formControlName="name"
+          class="my-input"
+        />
+        <my-form-error key="required">
+          {{ 'common.errors.required' | translate }}
+        </my-form-error>
+      </my-form-field>
+
+      <!-- Description -->
+      <my-form-field>
+        <label for="descriptionField" class="my-label">
+          {{ 'tasks.form.description' | translate }}
+        </label>
+        <input
+          id="descriptionField"
+          type="text"
+          [placeholder]="'tasks.form.description' | translate"
+          formControlName="description"
+          class="my-input"
+        />
+      </my-form-field>
+
+      <!-- Quantity and measure -->
+      <div class="flex flex-col gap-1.5">
+        <label for="quantityField" class="my-label after:text-my-primary-default after:content-['_*']">
+          {{ 'tasks.form.quantity' | translate }}
+        </label>
+        <div class="flex flex-wrap items-start gap-4">
+          <my-form-field class="flex-1 overflow-hidden">
+            <input
+              id="quantityField"
+              type="number"
+              [min]="1"
+              [placeholder]="'tasks.form.quantity' | translate"
+              formControlName="quantity"
+              class="my-input"
+            />
+            <my-form-error key="required">
+              {{ 'common.errors.required' | translate }}
+            </my-form-error>
+          </my-form-field>
+          <my-form-field>
+            <label for="measureField" class="my-label">
+              {{ 'tasks.form.assignTo' | translate }}
+            </label>
+            <select id="measureField" formControlName="measure" class="my-select">
+              @for (measure of measures(); track $index) {
+                <option [value]="measure">{{ measure }}</option>
+              }
+            </select>
+            <my-form-error key="required">
+              {{ 'common.errors.required' | translate }}
+            </my-form-error>
+          </my-form-field>
+        </div>
+      </div>
+    </form>
+  </my-dialog-content>
+  <my-dialog-footer>
+    <button class="my-button secondary" [disabled]="_loading" (click)="onClickCancel()">
+      {{ 'common.buttons.cancel' | translate }}
+    </button>
+    <button class="my-button primary" [disabled]="_loading" (click)="onClickSave()">
+      @if (_loading) {
+        {{ 'common.buttons.saving' | translate }}
+      } @else {
+        {{ 'common.buttons.save' | translate }}
+      }
+    </button>
+  </my-dialog-footer>
+</my-dialog>

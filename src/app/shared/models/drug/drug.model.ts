@@ -1,8 +1,8 @@
 import { DocumentData } from '@angular/fire/firestore';
 
 export enum DrugMeasureEnum {
-  Milligrams = 'milligrams',
-  Milliliters = 'milliliters',
+  Mg = 'mg',
+  Ml = 'ml',
 }
 
 export interface DrugInterface {
