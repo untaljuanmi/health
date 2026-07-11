@@ -11,13 +11,13 @@ export class MyDialogRefModel {
   }
 
   close(result?: unknown): void {
-    this._overlayRef.addPanelClass('my-dialog-panel-exit-animation');
-    this._overlayRef.detachBackdrop();
+    // this._overlayRef.addPanelClass('my-dialog-panel-exit-animation');
+    // this._overlayRef.detachBackdrop();
     this._afterClosedSubject.next(result);
     this._afterClosedSubject.complete();
-    setTimeout((): void => {
-      this._overlayRef.dispose();
-    }, 400);
+    this._overlayRef.dispose();
+    // setTimeout((): void => {
+    // }, 400);
   }
 
   listenBackdropClick(): void {

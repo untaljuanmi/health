@@ -2,20 +2,20 @@
   class="bg-my-secondary-500/50 pointer-events-auto flex flex-row gap-2 overflow-hidden rounded-full p-2 backdrop-blur-xs"
 >
   <button class="my-navbar-button" [routerLinkActive]="'my-navbar-button-active'" [routerLink]="['/home']">
-    <span class="mat-icon mat-icon-3xl">home</span>
-    <span>{{ 'home.title' | translate }}</span>
+    <span class="mat-icon mat-icon-xl">home</span>
+    <span class="my-navbar-button-label">{{ 'home.title' | translate }}</span>
   </button>
   <button class="my-navbar-button" [routerLinkActive]="'my-navbar-button-active'" [routerLink]="['/health-events']">
-    <span class="mat-icon mat-icon-3xl">event</span>
-    <span>{{ 'healthEvents.title' | translate }}</span>
+    <span class="mat-icon mat-icon-xl">event</span>
+    <span class="my-navbar-button-label">{{ 'healthEvents.title' | translate }}</span>
   </button>
   <button class="my-navbar-button" [routerLinkActive]="'my-navbar-button-active'" [routerLink]="['/drugs']">
-    <span class="mat-icon mat-icon-3xl">pill</span>
-    <span>{{ 'drugs.title' | translate }}</span>
+    <span class="mat-icon mat-icon-xl">pill</span>
+    <span class="my-navbar-button-label">{{ 'drugs.title' | translate }}</span>
   </button>
   <!--  <button class="my-navbar-button" (click)="onClickSignOut()">-->
   <!--    <span class="mat-icon mat-icon-3xl">logout</span>-->
-  <!--    <span>{{ 'auth.signOut' | translate }}</span>-->
+  <!--    <span class="truncate">{{ 'auth.signOut' | translate }}</span>-->
   <!--  </button>-->
 </nav>
 <button
