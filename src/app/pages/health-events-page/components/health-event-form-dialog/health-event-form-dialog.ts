@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import {
@@ -13,8 +13,9 @@ import {
   MyFormField,
   MyToastState,
 } from '../../../../library';
-import { HealthEventInterface, HealthEventPainTypeEnum } from '../../../../shared/models';
-import { HealthEventsState } from '../../../../state';
+import { dateIntoFormDateTime } from '../../../../library/my-utils';
+import { HealthEventDrugInterface, HealthEventInterface, HealthEventPainTypeEnum } from '../../../../shared/models';
+import { DrugsState, HealthEventsState } from '../../../../state';
 
 export interface HealthEventFormDialogData {
   healthEvent?: HealthEventInterface;
@@ -42,7 +43,9 @@ export class HealthEventFormDialog {
   private readonly _myToastState = inject(MyToastState);
 
   private readonly _healthEventsState = inject(HealthEventsState);
+  private readonly _drugsState = inject(DrugsState);
 
+  drugs = this._drugsState.drugs;
   painTypes = signal<HealthEventPainTypeEnum[]>([
     HealthEventPainTypeEnum.Headache,
     HealthEventPainTypeEnum.Nausea,
@@ -57,6 +60,23 @@ export class HealthEventFormDialog {
   formGroup = this.buildFormGroup();
 
   private readonly _loading = signal<boolean>(false);
+
+  get drugsFormArray(): FormArray {
+    return this.formGroup.get('drugs') as FormArray;
+  }
+
+  onClickAddNewDrug(): void {
+    this.drugsFormArray.push(
+      this._formBuilder.group({
+        drug: this._formBuilder.control(this.drugs()[0].id, Validators.required),
+        quantity: this._formBuilder.control(1, Validators.required),
+      })
+    );
+  }
+
+  onClickRemoveDrug(index: number): void {
+    this.drugsFormArray.removeAt(index);
+  }
 
   onClickCancel(): void {
     this._myDialogRef.close();
@@ -104,11 +124,24 @@ export class HealthEventFormDialog {
         Validators.min(0),
         Validators.max(10),
       ]),
-      drugs: this._formBuilder.control(healthEvent?.drugs ?? null),
+      drugs: this.buildDrugsFormArray(healthEvent?.drugs),
       notes: this._formBuilder.control(healthEvent?.notes ?? null),
-      from: this._formBuilder.control(healthEvent?.from ?? new Date(), [Validators.required]),
-      to: this._formBuilder.control(healthEvent?.to ?? new Date(), [Validators.required]),
+      from: this._formBuilder.control(healthEvent?.from ?? dateIntoFormDateTime(new Date()), [Validators.required]),
+      to: this._formBuilder.control(healthEvent?.to ?? dateIntoFormDateTime(new Date()), [Validators.required]),
     });
+  }
+
+  private buildDrugsFormArray(drugs?: HealthEventDrugInterface[] | null): FormArray {
+    const formArray = this._formBuilder.array([]) as FormArray;
+    drugs?.forEach((healthEventDrug: HealthEventDrugInterface) => {
+      formArray.push(
+        this._formBuilder.group({
+          drug: this._formBuilder.control(healthEventDrug.drug, Validators.required),
+          quantity: this._formBuilder.control(healthEventDrug.quantity, Validators.required),
+        })
+      );
+    });
+    return formArray;
   }
 
   private getLoadingStatus(loading: boolean): boolean {

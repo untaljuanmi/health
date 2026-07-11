@@ -74,7 +74,16 @@
       "editHealthEvent": "Editar evento de salud",
       "title": "Título",
       "description": "Descripción",
-      "painLevel": "Nivel de dolor"
+      "painType": "Tipo de dolor",
+      "painLevel": "Nivel de dolor",
+      "drugs": "Medicamentos",
+      "drug": "Medicamento",
+      "quantity": "Cantidad",
+      "addDrug": "Añadir medicamento",
+      "addAnotherDrug": "Añadir otro medicamento",
+      "noDrugsHaveBeenAddedYet": "Aún no se han añadido medicamentos",
+      "from": "Desde",
+      "to": "Hasta"
     },
     "confirm": {
       "delete": {

@@ -17,7 +17,8 @@
         @apply after:text-red-700 after:content-['_*'];
       }
 
-      input.my-input {
+      input.my-input,
+      select.my-select {
         @apply border-2 border-red-700! text-red-700!;
       }
     }

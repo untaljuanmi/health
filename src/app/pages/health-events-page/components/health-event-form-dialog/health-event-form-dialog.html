@@ -87,14 +87,116 @@
           </my-form-field>
         </div>
       </div>
+
+      @let _drugs = drugs();
+      @if (_drugs?.length) {
+        <div class="flex flex-col gap-1.5">
+          <span class="my-label">
+            {{ 'healthEvents.form.drugs' | translate }}
+          </span>
+          <div class="border-my-secondary-default flex flex-col gap-4 rounded-lg border-2 p-4" formArrayName="drugs">
+            @for (drugFormGroup of drugsFormArray.controls; track drugFormGroup; let _index = $index) {
+              <form [formGroupName]="_index" class="flex gap-4">
+                <my-form-field class="flex-1">
+                  <label [for]="`drugField-${_index}`" class="my-label truncate">
+                    {{ 'healthEvents.form.drug' | translate }}
+                  </label>
+                  <select [id]="`drugField-${_index}`" formControlName="drug" class="my-select">
+                    @for (_drug of _drugs; track _drug.id) {
+                      <option [value]="_drug.id">
+                        {{ _drug.name | translate }}
+                      </option>
+                    }
+                  </select>
+                  <my-form-error key="required">
+                    {{ 'common.errors.required' | translate }}
+                  </my-form-error>
+                </my-form-field>
+                <my-form-field class="w-25 max-w-25 min-w-25 basis-25">
+                  <label [for]="`quantityField-${_index}`" class="my-label w-25 max-w-25 min-w-25 truncate">
+                    {{ 'healthEvents.form.quantity' | translate }}
+                  </label>
+                  <input
+                    [id]="`quantityField-${_index}`"
+                    type="number"
+                    [min]="0"
+                    [placeholder]="'healthEvents.form.quantity' | translate"
+                    formControlName="quantity"
+                    class="my-input w-25 max-w-25 min-w-25"
+                  />
+                  <my-form-error key="required">
+                    {{ 'common.errors.required' | translate }}
+                  </my-form-error>
+                  <my-form-error key="min">
+                    {{ 'common.errors.min' | translate: { value: 0 } }}
+                  </my-form-error>
+                </my-form-field>
+                <button type="button" class="my-icon-button danger mt-7 min-w-11" (click)="onClickRemoveDrug(_index)">
+                  <span class="mat-icon mat-icon-2xl">delete</span>
+                </button>
+              </form>
+            } @empty {
+              <div class="bg-my-secondary-100 flex items-center justify-center rounded-lg px-4 py-8">
+                <span class="font-body-md text-my-secondary-default text-center select-none">
+                  {{ 'healthEvents.form.noDrugsHaveBeenAddedYet' | translate }}
+                </span>
+              </div>
+            }
+            <div class="flex justify-end select-none">
+              <button type="button" class="my-button text px-0" (click)="onClickAddNewDrug()">
+                <span class="mat-icon">add</span>
+                @if (drugsFormArray.length) {
+                  {{ 'healthEvents.form.addAnotherDrug' | translate }}
+                } @else {
+                  {{ 'healthEvents.form.addDrug' | translate }}
+                }
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Pain duration from -->
+      <my-form-field class="flex-1 overflow-hidden">
+        <label for="fromField" class="my-label">
+          {{ 'healthEvents.form.from' | translate }}
+        </label>
+        <input
+          id="fromField"
+          type="datetime-local"
+          [placeholder]="'healthEvents.form.from' | translate"
+          formControlName="from"
+          class="my-input"
+        />
+        <my-form-error key="required">
+          {{ 'common.errors.required' | translate }}
+        </my-form-error>
+      </my-form-field>
+
+      <!-- Pain duration to -->
+      <my-form-field class="flex-1 overflow-hidden">
+        <label for="toField" class="my-label">
+          {{ 'healthEvents.form.to' | translate }}
+        </label>
+        <input
+          id="toField"
+          type="datetime-local"
+          [placeholder]="'healthEvents.form.to' | translate"
+          formControlName="to"
+          class="my-input"
+        />
+        <my-form-error key="required">
+          {{ 'common.errors.required' | translate }}
+        </my-form-error>
+      </my-form-field>
     </form>
   </my-dialog-content>
 
   <my-dialog-footer>
-    <button class="my-button secondary" [disabled]="_loading" (click)="onClickCancel()">
+    <button type="button" class="my-button secondary" [disabled]="_loading" (click)="onClickCancel()">
       {{ 'common.buttons.cancel' | translate }}
     </button>
-    <button class="my-button primary" [disabled]="_loading" (click)="onClickSave()">
+    <button type="button" class="my-button primary" [disabled]="_loading" (click)="onClickSave()">
       @if (_loading) {
         {{ 'common.buttons.saving' | translate }}
       } @else {

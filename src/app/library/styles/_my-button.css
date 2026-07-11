@@ -42,6 +42,26 @@
       }
     }
 
+    &.text {
+      @apply disabled:text-my-primary-default/50 text-my-primary-default hover:text-my-primary-hover active:text-my-primary-active border-none bg-transparent shadow-none disabled:translate-y-0 disabled:cursor-not-allowed;
+
+      &.info {
+        @apply disabled:text-my-info-default/50 text-my-info-default hover:text-my-info-hover active:text-my-info-active disabled:translate-y-0;
+      }
+
+      &.success {
+        @apply disabled:text-my-success-default/50 text-my-success-default hover:text-my-success-hover active:text-my-success-active disabled:translate-y-0;
+      }
+
+      &.warning {
+        @apply disabled:text-my-warning-default/50 text-my-warning-default hover:text-my-warning-hover active:text-my-warning-active disabled:translate-y-0;
+      }
+
+      &.danger {
+        @apply disabled:text-my-danger-default/50 text-my-danger-default hover:text-my-danger-hover active:text-my-danger-active disabled:translate-y-0;
+      }
+    }
+
     & > span:not(.mat-icon) {
       @apply font-subtitle-md truncate;
     }

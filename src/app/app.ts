@@ -2,12 +2,11 @@ import { afterNextRender, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { AppState, AppUpdateState } from './core';
-import { Navbar } from './layout';
 import { MyToastContainer } from './library';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MyToastContainer, Navbar],
+  imports: [RouterOutlet, MyToastContainer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { MyDialogState, MyToastState } from '../../../../library';
 import { ConfirmDialog } from '../../../../shared';
@@ -8,7 +10,7 @@ import { HealthEventFormDialog } from '../health-event-form-dialog/health-event-
 
 @Component({
   selector: 'app-health-event-card',
-  imports: [],
+  imports: [TranslatePipe, DatePipe],
   templateUrl: './health-event-card.html',
 })
 export class HealthEventCard {

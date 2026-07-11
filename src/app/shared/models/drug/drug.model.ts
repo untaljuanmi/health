@@ -11,7 +11,6 @@ export interface DrugInterface {
   description?: string | null;
   measure?: number | null;
   measureType?: DrugMeasureEnum[] | null;
-  quantity?: number | null;
   notes?: string[] | null;
 }
 
@@ -21,7 +20,6 @@ export class Drug implements DrugInterface {
   description?: string | null;
   measure?: number | null;
   measureType?: DrugMeasureEnum[] | null;
-  quantity?: number | null;
   notes?: string[] | null;
 
   constructor(drug?: DrugInterface) {
@@ -30,7 +28,6 @@ export class Drug implements DrugInterface {
     this.description = drug?.description;
     this.measure = drug?.measure;
     this.measureType = drug?.measureType;
-    this.quantity = drug?.quantity;
     this.notes = drug?.notes;
   }
 

@@ -14,5 +14,28 @@
     </div>
   </div>
   <hr class="my-divider" />
-  <span class="font-body-md select-text">{{ _healthEvent.description }}</span>
+  <span class="font-body-md italic select-text">{{ _healthEvent.description }}</span>
+  <span class="font-subtitle-md">
+    {{ 'healthEvents.form.painType' | translate }}:
+    <span class="font-body-md">{{ `healthEvents.painType.${_healthEvent.painType}` | translate }}</span>
+  </span>
+  <span class="font-subtitle-md">
+    {{ 'healthEvents.form.painLevel' | translate }}:
+    <span class="font-body-md">{{ _healthEvent.painLevel }}</span>
+  </span>
+  <span class="font-subtitle-md">
+    {{ 'healthEvents.form.from' | translate }}:
+    <span class="font-body-md">{{ _healthEvent.from | date: 'short' }}</span>
+  </span>
+  <span class="font-subtitle-md">
+    {{ 'healthEvents.form.to' | translate }}:
+    <span class="font-body-md">{{ _healthEvent.to | date: 'short' }}</span>
+  </span>
+  <span class="font-subtitle-md">
+    {{ 'healthEvents.form.drugs' | translate }}:
+    @for (_healthEventDrug of _healthEvent.drugs; track $index) {
+      <span class="font-body-md">{{ _healthEventDrug.drug }}</span>
+      <span class="font-body-md">{{ _healthEventDrug.quantity }}</span>
+    }
+  </span>
 </div>

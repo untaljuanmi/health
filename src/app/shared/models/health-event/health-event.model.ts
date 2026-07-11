@@ -1,12 +1,15 @@
 import { DocumentData } from '@angular/fire/firestore';
 
-import { DrugInterface } from '../drug/drug.model';
-
 export enum HealthEventPainTypeEnum {
   Headache = 'headache',
   Nausea = 'nausea',
   Vomiting = 'vomiting',
   Diarrhea = 'diarrhea',
+}
+
+export interface HealthEventDrugInterface {
+  drug: string;
+  quantity: number;
 }
 
 export interface HealthEventInterface {
@@ -15,7 +18,7 @@ export interface HealthEventInterface {
   description?: string | null;
   painType?: HealthEventPainTypeEnum[] | null;
   painLevel?: number | null;
-  drugs?: DrugInterface[] | null;
+  drugs?: HealthEventDrugInterface[] | null;
   notes?: string[] | null;
   from?: Date | null;
   to?: Date | null;
@@ -27,7 +30,7 @@ export class HealthEvent implements HealthEventInterface {
   description?: string | null;
   painType?: HealthEventPainTypeEnum[] | null;
   painLevel?: number | null;
-  drugs?: DrugInterface[] | null;
+  drugs?: HealthEventDrugInterface[] | null;
   notes?: string[] | null;
   from?: Date | null;
   to?: Date | null;
