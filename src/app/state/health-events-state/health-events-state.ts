@@ -1,6 +1,6 @@
 import { Service, Signal, signal } from '@angular/core';
 import { DocumentData, DocumentReference } from '@angular/fire/firestore';
-import { finalize, map, tap } from 'rxjs';
+import { catchError, map, NEVER, tap } from 'rxjs';
 
 import { FirestoreBase } from '../../core';
 import { HealthEvent, HealthEventInterface } from '../../shared/models';
@@ -30,7 +30,11 @@ export class HealthEventsState extends FirestoreBase<HealthEventInterface> {
       .pipe(
         map((data: DocumentData[]) => HealthEvent.buildFromDocumentsData(data)),
         tap((data: HealthEvent[]) => this._healthEvents.set(data)),
-        finalize(() => this._loading.set(false))
+        tap(() => this._loading.set(false)),
+        catchError(() => {
+          this._loading.set(false);
+          return NEVER;
+        })
       )
       .subscribe();
   }

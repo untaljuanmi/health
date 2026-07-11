@@ -9,7 +9,8 @@ export interface DrugInterface {
   id?: string | null;
   name?: string | null;
   description?: string | null;
-  measure?: DrugMeasureEnum[] | null;
+  measure?: number | null;
+  measureType?: DrugMeasureEnum[] | null;
   quantity?: number | null;
   notes?: string[] | null;
 }
@@ -18,7 +19,8 @@ export class Drug implements DrugInterface {
   id?: string | null;
   name?: string | null;
   description?: string | null;
-  measure?: DrugMeasureEnum[] | null;
+  measure?: number | null;
+  measureType?: DrugMeasureEnum[] | null;
   quantity?: number | null;
   notes?: string[] | null;
 
@@ -27,6 +29,7 @@ export class Drug implements DrugInterface {
     this.name = drug?.name;
     this.description = drug?.description;
     this.measure = drug?.measure;
+    this.measureType = drug?.measureType;
     this.quantity = drug?.quantity;
     this.notes = drug?.notes;
   }

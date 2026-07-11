@@ -15,14 +15,18 @@
       @for (_healthEvent of healthEvents(); track $index) {
         <app-health-event-card [healthEvent]="_healthEvent" />
       } @empty {
-        <div class="flex flex-col items-center py-4 transition-all">
-          <span class="mat-icon mat-icon-5xl text-my-secondary-500 mb-4">calendar_today</span>
-          <p class="font-body-lg text-my-secondary-500 mb-2 max-w-120 text-center">
-            {{ 'healthEvents.noEvents' | translate }}
-          </p>
-          <p class="font-body-lg text-my-secondary-500 max-w-120 text-center">
-            {{ 'healthEvents.everythingSeemsAlright' | translate }}
-          </p>
+        <div class="flex min-h-41 flex-col items-center justify-center py-4 transition-all">
+          @if (loading()) {
+            <span class="mat-icon mat-icon-3xl text-my-secondary-default animate-spin">progress_activity</span>
+          } @else {
+            <span class="mat-icon mat-icon-5xl text-my-secondary-500 mb-4">calendar_today</span>
+            <p class="font-body-lg text-my-secondary-500 mb-2 max-w-120 text-center">
+              {{ 'healthEvents.noEvents' | translate }}
+            </p>
+            <p class="font-body-lg text-my-secondary-500 max-w-120 text-center">
+              {{ 'healthEvents.everythingSeemsAlright' | translate }}
+            </p>
+          }
         </div>
       }
     </div>

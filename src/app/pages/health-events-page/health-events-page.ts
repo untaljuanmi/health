@@ -17,6 +17,7 @@ export default class HealthEventsPage {
   private readonly _healthEventsState = inject(HealthEventsState);
 
   readonly healthEvents = this._healthEventsState.healthEvents;
+  readonly loading = this._healthEventsState.loading;
 
   onClickAddHealthEvent(): void {
     this._myDialogState.open(HealthEventFormDialog);

@@ -17,6 +17,7 @@ export default class DrugsPage {
   private readonly _drugsState = inject(DrugsState);
 
   readonly drugs = this._drugsState.drugs;
+  readonly loading = this._drugsState.loading;
 
   onClickAddDrug(): void {
     this._myDialogState.open(DrugFormDialog);

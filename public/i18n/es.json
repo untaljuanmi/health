@@ -78,25 +78,25 @@
     },
     "confirm": {
       "delete": {
-        "title": "¿Quieres eliminar este evento?",
+        "title": "Eliminar evento",
         "description": "Esta acción no es irreversible. El evento será eliminado inmediatamente de la base de datos."
       }
     },
     "success": {
-      "healthEventCreated": "El evento ha sido registrado correctamente",
-      "healthEventUpdated": "El evento ha sido actualizado correctamente",
-      "healthEventDeleted": "El evento ha sido eliminado correctamente"
+      "healthEventCreated": "Evento registrado correctamente",
+      "healthEventUpdated": "Evento actualizado correctamente",
+      "healthEventDeleted": "Evento eliminado correctamente"
     },
     "error": {
-      "healthEventNotCreated": "Ha ocurrido un error al registrar el evento",
-      "healthEventNotUpdated": "Ha ocurrido un error al actualizar el evento",
-      "healthEventNotDeleted": "Ha ocurrido un error al eliminar el evento"
+      "healthEventNotCreated": "Error al registrar el evento",
+      "healthEventNotUpdated": "Error al actualizar el evento",
+      "healthEventNotDeleted": "Error al eliminar el evento"
     }
   },
   "drugs": {
     "title": "Medicamentos",
     "noDrugs": "No hay medicamentos registrados",
-    "maybeCreateOne": "¿Por qué no añades uno desde el botón de la cabecera?",
+    "everythingSeemsAlright": "¡Parece que todo marcha correctamente!",
     "form": {
       "addDrug": "Añadir medicamento",
       "editDrug": "Editar medicamento",
@@ -106,19 +106,19 @@
     },
     "confirm": {
       "delete": {
-        "title": "¿Quieres eliminar este medicamento?",
+        "title": "Eliminar medicamento",
         "description": "Esta acción no es irreversible. El medicamente será eliminado inmediatamente de la base de datos."
       }
     },
     "success": {
-      "drugCreated": "El medicamento ha sido registrado correctamente",
-      "drugUpdated": "El medicamento ha sido actualizado correctamente",
-      "drugDeleted": "El medicamento ha sido eliminado correctamente"
+      "drugCreated": "Medicamento registrado correctamente",
+      "drugUpdated": "Medicamento actualizado correctamente",
+      "drugDeleted": "Medicamento eliminado correctamente"
     },
     "error": {
-      "drugNotCreated": "Ha ocurrido un error al registrar el medicamento",
-      "drugNotUpdated": "Ha ocurrido un error al actualizar el medicamento",
-      "drugNotDeleted": "Ha ocurrido un error al eliminar el medicamento"
+      "drugNotCreated": "Error al registrar el medicamento",
+      "drugNotUpdated": "Error al actualizar el medicamento",
+      "drugNotDeleted": "Error al eliminar el medicamento"
     }
   }
 }

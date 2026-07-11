@@ -90,8 +90,8 @@ export class DrugFormDialog {
     return this._formBuilder.group({
       name: this._formBuilder.control(this.drug()?.name ?? null, [Validators.required]),
       description: this._formBuilder.control(this.drug()?.description ?? null),
-      measure: this._formBuilder.control(this.drug()?.measure ?? DrugMeasureEnum.Mg, [Validators.required]),
-      quantity: this._formBuilder.control(this.drug()?.quantity ?? 10, [Validators.required, Validators.min(1)]),
+      measure: this._formBuilder.control(this.drug()?.measure ?? 1, [Validators.required, Validators.min(1)]),
+      measureType: this._formBuilder.control(this.drug()?.measureType ?? DrugMeasureEnum.Mg, [Validators.required]),
       notes: this._formBuilder.control(this.drug()?.notes ?? null),
     });
   }
@@ -100,7 +100,7 @@ export class DrugFormDialog {
     this.formGroup?.get('name')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('description')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('measure')?.[loading ? 'disable' : 'enable']?.();
-    this.formGroup?.get('quantity')?.[loading ? 'disable' : 'enable']?.();
+    this.formGroup?.get('measureType')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('notes')?.[loading ? 'disable' : 'enable']?.();
     return loading;
   }
@@ -110,7 +110,7 @@ export class DrugFormDialog {
     this.formGroup.get('name')?.updateValueAndValidity();
     this.formGroup.get('description')?.updateValueAndValidity();
     this.formGroup.get('measure')?.updateValueAndValidity();
-    this.formGroup.get('quantity')?.updateValueAndValidity();
+    this.formGroup.get('measureType')?.updateValueAndValidity();
     this.formGroup.get('notes')?.updateValueAndValidity();
   }
 }

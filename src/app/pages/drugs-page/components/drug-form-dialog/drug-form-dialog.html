@@ -42,24 +42,24 @@
         />
       </my-form-field>
 
-      <!-- Quantity and measure -->
+      <!-- Measure -->
       <div class="flex flex-col gap-1.5">
         <label
-          for="quantityField"
+          for="measureField"
           class="my-label after:content-['_*']"
-          [class.after:text-my-primary-default]="formGroup?.get('quantity')?.valid"
-          [class.after:text-red-700]="formGroup?.get('quantity')?.invalid"
+          [class.after:text-my-primary-default]="formGroup?.get('measure')?.valid"
+          [class.after:text-red-700]="formGroup?.get('measure')?.invalid"
         >
-          {{ 'drugs.form.quantity' | translate }}
+          {{ 'drugs.form.measure' | translate }}
         </label>
         <div class="flex items-start gap-4">
           <my-form-field class="flex-1 overflow-hidden">
             <input
-              id="quantityField"
+              id="measureField"
               type="number"
               [min]="1"
-              [placeholder]="'drugs.form.quantity' | translate"
-              formControlName="quantity"
+              [placeholder]="'drugs.form.measure' | translate"
+              formControlName="measure"
               class="my-input"
             />
             <my-form-error key="required">
@@ -70,7 +70,7 @@
             </my-form-error>
           </my-form-field>
           <my-form-field>
-            <select id="measureField" formControlName="measure" class="my-select">
+            <select id="measureTypeField" formControlName="measureType" class="my-select">
               @for (measure of measures(); track $index) {
                 <option [value]="measure">{{ measure }}</option>
               }
