@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { AppState } from '../../../core';
+import { DrugsState, HealthEventsState } from '../../../state';
 import { Navbar } from '../navbar/navbar';
 
 @Component({
@@ -12,6 +13,9 @@ import { Navbar } from '../navbar/navbar';
 })
 export class Layout {
   private readonly _appState = inject(AppState);
+
+  private readonly _healthEventsState = inject(HealthEventsState);
+  private readonly _drugsState = inject(DrugsState);
 
   isAppReady = this._appState.isAppReady;
 }
