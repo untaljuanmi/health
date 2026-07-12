@@ -111,7 +111,7 @@
       "editDrug": "Editar medicamento",
       "name": "Nombre",
       "description": "Descripción",
-      "quantity": "Cantidad"
+      "measure": "Medida"
     },
     "confirm": {
       "delete": {

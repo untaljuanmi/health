@@ -3,6 +3,7 @@
   "common": {
     "buttons": {
       "add": "Add",
+      "record": "Record",
       "cancel": "Cancel",
       "accept": "Accept",
       "save": "Save",
@@ -53,15 +54,80 @@
       "auth/email-already-in-use": "The email is already in use",
       "auth/too-many-requests": "Too many attempts. Please try again later",
       "auth.errors.auth/network-request-failed": "An error has occurred trying to establish connection with the servers"
+    }
+  },
+  "home": {
+    "title": "Home"
+  },
+  "healthEvents": {
+    "title": "Events",
+    "noEvents": "No health events have been recorded",
+    "everythingSeemsAlright": "Everything seems to be fine!",
+    "painType": {
+      "headache": "Migraine",
+      "nausea": "Nausea",
+      "vomiting": "Vomiting",
+      "diarrhea": "Diarrhea"
     },
-    "home": {
-      "title": "Home"
+    "form": {
+      "addHealthEvent": "Record health event",
+      "editHealthEvent": "Edit health event",
+      "title": "Title",
+      "description": "Description",
+      "painType": "Type of pain",
+      "painLevel": "Pain level",
+      "drugs": "Medications",
+      "drug": "Medication",
+      "quantity": "Quantity",
+      "addDrug": "Add medication",
+      "addAnotherDrug": "Add another medication",
+      "noDrugsHaveBeenAddedYet": "No medications have been added yet",
+      "from": "From",
+      "to": "To"
     },
-    "healthEvents": {
-      "title": "Events"
+    "confirm": {
+      "delete": {
+        "title": "Delete event",
+        "description": "This action is irreversible. The event will be deleted immediately from the database."
+      }
     },
-    "drugs": {
-      "title": "Drugs"
+    "success": {
+      "healthEventCreated": "Health event recorded successfully",
+      "healthEventUpdated": "Health event updated successfully",
+      "healthEventDeleted": "Health event deleted successfully"
+    },
+    "error": {
+      "healthEventNotCreated": "Error recording the health event",
+      "healthEventNotUpdated": "Error updating the health event",
+      "healthEventNotDeleted": "Error deleting the health event"
+    }
+  },
+  "drugs": {
+    "title": "Drugs",
+    "noDrugs": "No medications have been recorded",
+    "everythingSeemsAlright": "Everything seems to be fine!",
+    "form": {
+      "addDrug": "Add medication",
+      "editDrug": "Edit medication",
+      "name": "Name",
+      "description": "Description",
+      "measure": "Unit"
+    },
+    "confirm": {
+      "delete": {
+        "title": "Delete medication",
+        "description": "This action is irreversible. The medication will be deleted immediately from the database."
+      }
+    },
+    "success": {
+      "drugCreated": "Medication recorded successfully",
+      "drugUpdated": "Medication updated successfully",
+      "drugDeleted": "Medication deleted successfully"
+    },
+    "error": {
+      "drugNotCreated": "Error recording the medication",
+      "drugNotUpdated": "Error updating the medication",
+      "drugNotDeleted": "Error deleting the medication"
     }
   }
 }
