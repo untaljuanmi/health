@@ -27,15 +27,15 @@
     }
 
     &.bl {
-      @apply bottom-16 left-4 md:bottom-0;
+      @apply bottom-22 left-4 md:bottom-0;
     }
 
     &.bc {
-      @apply right-1/2 bottom-16 translate-x-1/2 items-center md:bottom-0;
+      @apply right-1/2 bottom-22 translate-x-1/2 items-center md:bottom-0;
     }
 
     &.br {
-      @apply right-4 bottom-16 items-end md:bottom-0;
+      @apply right-4 bottom-22 items-end md:bottom-0;
     }
   }
 
