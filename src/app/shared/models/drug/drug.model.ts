@@ -12,6 +12,8 @@ export interface DrugInterface {
   measure?: number | null;
   measureType?: DrugMeasureEnum[] | null;
   notes?: string[] | null;
+  created?: Date | null;
+  updated?: Date | null;
 }
 
 export class Drug implements DrugInterface {
@@ -21,6 +23,8 @@ export class Drug implements DrugInterface {
   measure?: number | null;
   measureType?: DrugMeasureEnum[] | null;
   notes?: string[] | null;
+  created?: Date | null;
+  updated?: Date | null;
 
   constructor(drug?: DrugInterface) {
     this.id = drug?.id;
@@ -29,6 +33,8 @@ export class Drug implements DrugInterface {
     this.measure = drug?.measure;
     this.measureType = drug?.measureType;
     this.notes = drug?.notes;
+    this.created = drug?.created;
+    this.updated = drug?.updated;
   }
 
   static buildFromDocumentData(document: DocumentData): Drug {

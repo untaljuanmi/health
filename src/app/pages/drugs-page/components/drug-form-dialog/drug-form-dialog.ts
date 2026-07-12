@@ -69,6 +69,8 @@ export class DrugFormDialog {
     const drugId: string | null = drug?.id ?? null;
 
     if (!!drug && !!drugId) {
+      payload.updated = new Date();
+
       this._drugsState
         .updateDrug(drugId, payload)
         .then(() => this._myToastState.success('drugs.success.drugUpdated'))
@@ -78,9 +80,10 @@ export class DrugFormDialog {
       return;
     }
 
+    payload.created = new Date();
+
     this._drugsState
       .createDrug(payload)
-
       .then(() => this._myToastState.success('drugs.success.drugCreated'))
       .then(() => this._myDialogRef.close())
       .catch(() => this._myToastState.error('drugs.error.drugNotCreated'));

@@ -63,6 +63,10 @@
     "title": "Events",
     "noEvents": "No health events have been recorded",
     "everythingSeemsAlright": "Everything seems to be fine!",
+    "type": {
+      "pain": "Pain",
+      "drug": "Taking medication"
+    },
     "painType": {
       "headache": "Migraine",
       "nausea": "Nausea",
@@ -72,10 +76,11 @@
     "form": {
       "addHealthEvent": "Record health event",
       "editHealthEvent": "Edit health event",
-      "title": "Title",
+      "type": "Type",
       "description": "Description",
       "painType": "Type of pain",
       "painLevel": "Pain level",
+      "duration": "Duration",
       "drugs": "Medications",
       "drug": "Medication",
       "quantity": "Quantity",
@@ -83,7 +88,8 @@
       "addAnotherDrug": "Add another medication",
       "noDrugsHaveBeenAddedYet": "No medications have been added yet",
       "from": "From",
-      "to": "To"
+      "to": "To",
+      "date": "Date"
     },
     "confirm": {
       "delete": {

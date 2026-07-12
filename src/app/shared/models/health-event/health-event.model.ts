@@ -1,5 +1,10 @@
 import { DocumentData } from '@angular/fire/firestore';
 
+export enum HealthEventTypeEnum {
+  Pain = 'pain',
+  Drug = 'drug',
+}
+
 export enum HealthEventPainTypeEnum {
   Headache = 'headache',
   Nausea = 'nausea',
@@ -14,30 +19,36 @@ export interface HealthEventDrugInterface {
 
 export interface HealthEventInterface {
   id?: string | null;
-  title?: string | null;
+  type?: HealthEventTypeEnum | null;
   description?: string | null;
-  painType?: HealthEventPainTypeEnum[] | null;
+  painType?: HealthEventPainTypeEnum | null;
   painLevel?: number | null;
   drugs?: HealthEventDrugInterface[] | null;
   notes?: string[] | null;
   from?: Date | null;
   to?: Date | null;
+  date?: Date | null;
+  created?: Date | null;
+  updated?: Date | null;
 }
 
 export class HealthEvent implements HealthEventInterface {
   id?: string | null;
-  title?: string | null;
+  type?: HealthEventTypeEnum | null;
   description?: string | null;
-  painType?: HealthEventPainTypeEnum[] | null;
+  painType?: HealthEventPainTypeEnum | null;
   painLevel?: number | null;
   drugs?: HealthEventDrugInterface[] | null;
   notes?: string[] | null;
   from?: Date | null;
   to?: Date | null;
+  date?: Date | null;
+  created?: Date | null;
+  updated?: Date | null;
 
   constructor(healthEvent?: HealthEventInterface) {
     this.id = healthEvent?.id;
-    this.title = healthEvent?.title;
+    this.type = healthEvent?.type;
     this.description = healthEvent?.description;
     this.painType = healthEvent?.painType;
     this.painLevel = healthEvent?.painLevel;
@@ -45,6 +56,9 @@ export class HealthEvent implements HealthEventInterface {
     this.notes = healthEvent?.notes;
     this.from = healthEvent?.from;
     this.to = healthEvent?.to;
+    this.date = healthEvent?.date;
+    this.created = healthEvent?.created;
+    this.updated = healthEvent?.updated;
   }
 
   static buildFromDocumentData(document: DocumentData): HealthEvent {

@@ -1,8 +1,18 @@
 @let _healthEvent = healthEvent();
-<div class="bg-my-secondary-50 flex flex-col gap-2 rounded-xl p-3 shadow-sm">
+<div class="bg-my-secondary-50 flex flex-col gap-3 rounded-xl p-3 shadow-sm">
   <div class="flex items-center justify-between gap-3">
-    <div class="flex items-center gap-3">
-      <span class="font-subtitle-lg select-text">{{ _healthEvent.title }}</span>
+    <div class="flex items-center gap-2">
+      @if (_healthEvent.type === healthEventTypeEnum.Pain) {
+        <span class="mat-icon mar-icon-3xl">sick</span>
+        <span class="font-subtitle-lg select-text">
+          {{ `healthEvents.type.${_healthEvent.type}` | translate }}
+        </span>
+      } @else {
+        <span class="mat-icon mar-icon-3xl">medication</span>
+        <span class="font-subtitle-lg select-text">
+          {{ `healthEvents.type.${_healthEvent.type}` | translate }}
+        </span>
+      }
     </div>
     <div class="flex items-center gap-3">
       <button class="my-icon-button danger" (click)="onClickDeleteHealthEvent(_healthEvent)">
@@ -13,29 +23,93 @@
       </button>
     </div>
   </div>
+
   <hr class="my-divider" />
-  <span class="font-body-md italic select-text">{{ _healthEvent.description }}</span>
-  <span class="font-subtitle-md">
-    {{ 'healthEvents.form.painType' | translate }}:
-    <span class="font-body-md">{{ `healthEvents.painType.${_healthEvent.painType}` | translate }}</span>
-  </span>
-  <span class="font-subtitle-md">
-    {{ 'healthEvents.form.painLevel' | translate }}:
-    <span class="font-body-md">{{ _healthEvent.painLevel }}</span>
-  </span>
-  <span class="font-subtitle-md">
-    {{ 'healthEvents.form.from' | translate }}:
-    <span class="font-body-md">{{ _healthEvent.from | date: 'short' }}</span>
-  </span>
-  <span class="font-subtitle-md">
-    {{ 'healthEvents.form.to' | translate }}:
-    <span class="font-body-md">{{ _healthEvent.to | date: 'short' }}</span>
-  </span>
-  <span class="font-subtitle-md">
-    {{ 'healthEvents.form.drugs' | translate }}:
-    @for (_healthEventDrug of _healthEvent.drugs; track $index) {
-      <span class="font-body-md">{{ _healthEventDrug.drug }}</span>
-      <span class="font-body-md">{{ _healthEventDrug.quantity }}</span>
-    }
-  </span>
+
+  @if (_healthEvent.description) {
+    <div class="flex flex-col gap-1">
+      <span class="font-subtitle-sm">{{ 'healthEvents.form.description' | translate }}</span>
+      <span class="font-body-md italic select-text">«{{ _healthEvent.description }}»</span>
+    </div>
+  }
+
+  @if (_healthEvent.type === healthEventTypeEnum.Pain) {
+    <div class="flex flex-col gap-1">
+      <span class="font-subtitle-sm">{{ 'healthEvents.form.painType' | translate }}</span>
+      <div
+        class="flex items-center gap-2 px-2"
+        [class.text-green-600]="_healthEvent.painLevel === 1"
+        [class.text-amber-300]="_healthEvent.painLevel === 2"
+        [class.text-yellow-500]="_healthEvent.painLevel === 3"
+        [class.text-orange-400]="_healthEvent.painLevel === 4"
+        [class.text-red-700]="_healthEvent.painLevel === 5"
+      >
+        <span class="mat-icon mat-icon-5xl">
+          @switch (_healthEvent.painType) {
+            @case (healthEventPainTypeEnum.Headache) {
+              {{ 'cognition' }}
+            }
+            @case (healthEventPainTypeEnum.Nausea) {
+              {{ 'gastroenterology' }}
+            }
+            @case (healthEventPainTypeEnum.Vomiting) {
+              {{ 'microbiology' }}
+            }
+            @case (healthEventPainTypeEnum.Diarrhea) {
+              {{ 'humidity_mid' }}
+            }
+          }
+        </span>
+        <span class="font-subtitle-md">{{ `healthEvents.painType.${_healthEvent.painType}` | translate }}</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <span class="font-subtitle-sm">{{ 'healthEvents.form.painLevel' | translate }}</span>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        @for (level of [1, 2, 3, 4, 5]; track level) {
+          <span
+            class="font-body-xs border-my-secondary-default flex h-8 w-8 items-center justify-center rounded-2xl border select-none"
+            [class.border-green-600!]="level === 1 && level === _healthEvent.painLevel"
+            [class.bg-green-600]="level === 1 && level === _healthEvent.painLevel"
+            [class.border-amber-300!]="level === 2 && level === _healthEvent.painLevel"
+            [class.bg-amber-300]="level === 2 && level === _healthEvent.painLevel"
+            [class.border-yellow-500!]="level === 3 && level === _healthEvent.painLevel"
+            [class.bg-yellow-500]="level === 3 && level === _healthEvent.painLevel"
+            [class.border-orange-400!]="level === 4 && level === _healthEvent.painLevel"
+            [class.bg-orange-400]="level === 4 && level === _healthEvent.painLevel"
+            [class.border-red-700!]="level === 5 && level === _healthEvent.painLevel"
+            [class.bg-red-700]="level === 5 && level === _healthEvent.painLevel"
+            [class.text-white]="level === _healthEvent.painLevel"
+            [class.font-semibold]="level === _healthEvent.painLevel"
+          >
+            {{ level }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <span class="font-subtitle-sm">{{ 'healthEvents.form.duration' | translate }}</span>
+      <div class="flex items-center justify-center gap-1">
+        <span class="font-subtitle-md">{{ _healthEvent.from | date: 'd MMM y, h:mm' }}</span>
+        <span class="mat-icon">arrow_right_alt</span>
+        <span class="font-subtitle-md">{{ _healthEvent.to | date: 'd MMM y, h:mm' }}</span>
+      </div>
+    </div>
+  }
+
+  @if (_healthEvent.drugs?.length) {
+    <div class="flex flex-col gap-1">
+      <span class="font-subtitle-sm">{{ 'healthEvents.form.drugs' | translate }}</span>
+      <div class="flex flex-col gap-2">
+        @for (_healthEventDrug of _healthEvent.drugs; track _healthEventDrug.drug) {
+          @let _drug = _healthEventDrug.drug | toDrug;
+          @if (_drug) {
+            <app-drug-card [drug]="_drug" [quantity]="_healthEventDrug.quantity" />
+          }
+        }
+      </div>
+    </div>
+  }
 </div>

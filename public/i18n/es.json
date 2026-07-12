@@ -63,6 +63,10 @@
     "title": "Eventos",
     "noEvents": "No hay eventos de salud registrados",
     "everythingSeemsAlright": "¡Parece que todo marcha correctamente!",
+    "type": {
+      "pain": "Dolor",
+      "drug": "Toma de medicamento"
+    },
     "painType": {
       "headache": "Migraña",
       "nausea": "Náuseas",
@@ -72,10 +76,11 @@
     "form": {
       "addHealthEvent": "Registrar evento de salud",
       "editHealthEvent": "Editar evento de salud",
-      "title": "Título",
+      "type": "Tipo",
       "description": "Descripción",
       "painType": "Tipo de dolor",
       "painLevel": "Nivel de dolor",
+      "duration": "Duración",
       "drugs": "Medicamentos",
       "drug": "Medicamento",
       "quantity": "Cantidad",
@@ -83,7 +88,8 @@
       "addAnotherDrug": "Añadir otro medicamento",
       "noDrugsHaveBeenAddedYet": "Aún no se han añadido medicamentos",
       "from": "Desde",
-      "to": "Hasta"
+      "to": "Hasta",
+      "date": "Fecha"
     },
     "confirm": {
       "delete": {

@@ -13,8 +13,13 @@ import {
   MyFormField,
   MyToastState,
 } from '../../../../library';
-import { dateIntoFormDateTime } from '../../../../library/my-utils';
-import { HealthEventDrugInterface, HealthEventInterface, HealthEventPainTypeEnum } from '../../../../shared/models';
+import { dateIntoFormDateTime, formDateIntoDate } from '../../../../library/my-utils';
+import {
+  HealthEventDrugInterface,
+  HealthEventInterface,
+  HealthEventPainTypeEnum,
+  HealthEventTypeEnum,
+} from '../../../../shared/models';
 import { DrugsState, HealthEventsState } from '../../../../state';
 
 export interface HealthEventFormDialogData {
@@ -46,6 +51,7 @@ export class HealthEventFormDialog {
   private readonly _drugsState = inject(DrugsState);
 
   drugs = this._drugsState.drugs;
+  types = signal<HealthEventTypeEnum[]>([HealthEventTypeEnum.Pain, HealthEventTypeEnum.Drug]);
   painTypes = signal<HealthEventPainTypeEnum[]>([
     HealthEventPainTypeEnum.Headache,
     HealthEventPainTypeEnum.Nausea,
@@ -58,6 +64,8 @@ export class HealthEventFormDialog {
   loading = computed(() => this.getLoadingStatus(this._loading()));
 
   formGroup = this.buildFormGroup();
+
+  readonly healthEventTypeEnum = HealthEventTypeEnum;
 
   private readonly _loading = signal<boolean>(false);
 
@@ -90,10 +98,19 @@ export class HealthEventFormDialog {
 
     const payload = this.formGroup.value as HealthEventInterface;
 
+    if (payload.type === HealthEventTypeEnum.Pain) {
+      payload.from = formDateIntoDate(payload.from as unknown as string);
+      payload.to = formDateIntoDate(payload.to as unknown as string);
+    } else {
+      payload.date = formDateIntoDate(payload.date as unknown as string);
+    }
+
     const healthEvent: HealthEventInterface | null = this.healthEvent() ?? null;
     const healthEventId: string | null = healthEvent?.id ?? null;
 
     if (!!healthEvent && !!healthEventId) {
+      payload.updated = new Date();
+
       this._healthEventsState
         .updateHealthEvent(healthEventId, payload)
         .then(() => this._myToastState.success('healthEvents.success.healthEventUpdated'))
@@ -103,9 +120,10 @@ export class HealthEventFormDialog {
       return;
     }
 
+    payload.created = new Date();
+
     this._healthEventsState
       .createHealthEvent(payload)
-
       .then(() => this._myToastState.success('healthEvents.success.healthEventCreated'))
       .then(() => this._myDialogRef.close())
       .catch(() => this._myToastState.error('healthEvents.error.healthEventNotCreated'));
@@ -113,21 +131,24 @@ export class HealthEventFormDialog {
 
   private buildFormGroup(): FormGroup {
     const healthEvent = this.healthEvent();
+    const now = dateIntoFormDateTime(new Date());
+
     return this._formBuilder.group({
-      title: this._formBuilder.control(healthEvent?.title ?? null, [Validators.required]),
+      type: this._formBuilder.control(healthEvent?.type ?? HealthEventTypeEnum.Pain, [Validators.required]),
       description: this._formBuilder.control(healthEvent?.description ?? null),
       painType: this._formBuilder.control(healthEvent?.painType ?? HealthEventPainTypeEnum.Headache, [
         Validators.required,
       ]),
-      painLevel: this._formBuilder.control(healthEvent?.painLevel ?? 5, [
+      painLevel: this._formBuilder.control(healthEvent?.painLevel ?? 3, [
         Validators.required,
-        Validators.min(0),
-        Validators.max(10),
+        Validators.min(1),
+        Validators.max(5),
       ]),
       drugs: this.buildDrugsFormArray(healthEvent?.drugs),
       notes: this._formBuilder.control(healthEvent?.notes ?? null),
-      from: this._formBuilder.control(healthEvent?.from ?? dateIntoFormDateTime(new Date()), [Validators.required]),
-      to: this._formBuilder.control(healthEvent?.to ?? dateIntoFormDateTime(new Date()), [Validators.required]),
+      from: this._formBuilder.control(healthEvent?.from ?? now, [Validators.required]),
+      to: this._formBuilder.control(healthEvent?.to ?? now, [Validators.required]),
+      date: this._formBuilder.control(healthEvent?.to ?? now, [Validators.required]),
     });
   }
 
@@ -145,7 +166,7 @@ export class HealthEventFormDialog {
   }
 
   private getLoadingStatus(loading: boolean): boolean {
-    this.formGroup?.get('title')?.[loading ? 'disable' : 'enable']?.();
+    this.formGroup?.get('type')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('description')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('painType')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('painLevel')?.[loading ? 'disable' : 'enable']?.();
@@ -153,12 +174,13 @@ export class HealthEventFormDialog {
     this.formGroup?.get('notes')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('from')?.[loading ? 'disable' : 'enable']?.();
     this.formGroup?.get('to')?.[loading ? 'disable' : 'enable']?.();
+    this.formGroup?.get('date')?.[loading ? 'disable' : 'enable']?.();
     return loading;
   }
 
   private markAllAsTouched(): void {
     this.formGroup.markAllAsTouched();
-    this.formGroup.get('title')?.updateValueAndValidity();
+    this.formGroup.get('type')?.updateValueAndValidity();
     this.formGroup.get('description')?.updateValueAndValidity();
     this.formGroup.get('painType')?.updateValueAndValidity();
     this.formGroup.get('painLevel')?.updateValueAndValidity();
@@ -166,5 +188,6 @@ export class HealthEventFormDialog {
     this.formGroup.get('notes')?.updateValueAndValidity();
     this.formGroup.get('from')?.updateValueAndValidity();
     this.formGroup.get('to')?.updateValueAndValidity();
+    this.formGroup.get('date')?.updateValueAndValidity();
   }
 }

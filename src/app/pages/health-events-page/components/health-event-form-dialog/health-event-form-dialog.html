@@ -1,5 +1,6 @@
 @let _loading = loading();
 @let _healthEvent = healthEvent();
+@let _type = formGroup.get('type')?.value;
 
 <my-dialog>
   <my-dialog-header>
@@ -11,18 +12,18 @@
 
   <my-dialog-content>
     <form [formGroup]="formGroup" class="flex flex-col gap-4">
-      <!-- Title -->
+      <!-- Type -->
       <my-form-field>
-        <label for="titleField" class="my-label">
-          {{ 'healthEvents.form.title' | translate }}
+        <label for="typeField" class="my-label">
+          {{ 'healthEvents.form.type' | translate }}
         </label>
-        <input
-          id="titleField"
-          type="text"
-          [placeholder]="'healthEvents.form.title' | translate"
-          formControlName="title"
-          class="my-input"
-        />
+        <select id="typeField" formControlName="type" class="my-select">
+          @for (type of types(); track $index) {
+            <option [value]="type">
+              {{ `healthEvents.type.${type}` | translate }}
+            </option>
+          }
+        </select>
         <my-form-error key="required">
           {{ 'common.errors.required' | translate }}
         </my-form-error>
@@ -42,51 +43,53 @@
         />
       </my-form-field>
 
-      <!-- Pain type and level -->
-      <div class="flex flex-col gap-1.5">
-        <label
-          for="painLevelField"
-          class="my-label after:content-['_*']"
-          [class.after:text-my-primary-default]="formGroup?.get('painLevel')?.valid"
-          [class.after:text-red-700]="formGroup?.get('painLevel')?.invalid"
-        >
-          {{ 'healthEvents.form.painLevel' | translate }}
-        </label>
-        <div class="flex items-start gap-3">
-          <my-form-field class="flex-1 overflow-hidden">
-            <input
-              id="painLevelField"
-              type="number"
-              [min]="0"
-              [max]="10"
-              [placeholder]="'healthEvents.form.painLevel' | translate"
-              formControlName="painLevel"
-              class="my-input"
-            />
-            <my-form-error key="required">
-              {{ 'common.errors.required' | translate }}
-            </my-form-error>
-            <my-form-error key="min">
-              {{ 'common.errors.min' | translate: { value: 0 } }}
-            </my-form-error>
-            <my-form-error key="max">
-              {{ 'common.errors.max' | translate: { value: 10 } }}
-            </my-form-error>
-          </my-form-field>
-          <my-form-field>
-            <select id="painTypeField" formControlName="painType" class="my-select">
-              @for (painType of painTypes(); track $index) {
-                <option [value]="painType">
-                  {{ `healthEvents.painType.${painType}` | translate }}
-                </option>
-              }
-            </select>
-            <my-form-error key="required">
-              {{ 'common.errors.required' | translate }}
-            </my-form-error>
-          </my-form-field>
+      @if (_type === healthEventTypeEnum.Pain) {
+        <!-- Pain type and level -->
+        <div class="flex flex-col gap-1.5">
+          <label
+            for="painLevelField"
+            class="my-label after:content-['_*']"
+            [class.after:text-my-primary-default]="formGroup?.get('painLevel')?.valid"
+            [class.after:text-red-700]="formGroup?.get('painLevel')?.invalid"
+          >
+            {{ 'healthEvents.form.painLevel' | translate }}
+          </label>
+          <div class="flex items-start gap-3">
+            <my-form-field class="flex-1 overflow-hidden">
+              <input
+                id="painLevelField"
+                type="number"
+                [min]="1"
+                [max]="5"
+                [placeholder]="'healthEvents.form.painLevel' | translate"
+                formControlName="painLevel"
+                class="my-input"
+              />
+              <my-form-error key="required">
+                {{ 'common.errors.required' | translate }}
+              </my-form-error>
+              <my-form-error key="min">
+                {{ 'common.errors.min' | translate: { value: 1 } }}
+              </my-form-error>
+              <my-form-error key="max">
+                {{ 'common.errors.max' | translate: { value: 5 } }}
+              </my-form-error>
+            </my-form-field>
+            <my-form-field>
+              <select id="painTypeField" formControlName="painType" class="my-select">
+                @for (painType of painTypes(); track $index) {
+                  <option [value]="painType">
+                    {{ `healthEvents.painType.${painType}` | translate }}
+                  </option>
+                }
+              </select>
+              <my-form-error key="required">
+                {{ 'common.errors.required' | translate }}
+              </my-form-error>
+            </my-form-field>
+          </div>
         </div>
-      </div>
+      }
 
       @let _drugs = drugs();
       @if (_drugs?.length) {
@@ -160,39 +163,58 @@
         </div>
       }
 
-      <!-- Pain duration from -->
-      <my-form-field class="flex-1 overflow-hidden">
-        <label for="fromField" class="my-label">
-          {{ 'healthEvents.form.from' | translate }}
-        </label>
-        <input
-          id="fromField"
-          type="datetime-local"
-          [placeholder]="'healthEvents.form.from' | translate"
-          formControlName="from"
-          class="my-input"
-        />
-        <my-form-error key="required">
-          {{ 'common.errors.required' | translate }}
-        </my-form-error>
-      </my-form-field>
+      @if (_type === healthEventTypeEnum.Pain) {
+        <!-- Pain duration from -->
+        <my-form-field class="flex-1 overflow-hidden">
+          <label for="fromField" class="my-label">
+            {{ 'healthEvents.form.from' | translate }}
+          </label>
+          <input
+            id="fromField"
+            type="datetime-local"
+            [placeholder]="'healthEvents.form.from' | translate"
+            formControlName="from"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+        </my-form-field>
 
-      <!-- Pain duration to -->
-      <my-form-field class="flex-1 overflow-hidden">
-        <label for="toField" class="my-label">
-          {{ 'healthEvents.form.to' | translate }}
-        </label>
-        <input
-          id="toField"
-          type="datetime-local"
-          [placeholder]="'healthEvents.form.to' | translate"
-          formControlName="to"
-          class="my-input"
-        />
-        <my-form-error key="required">
-          {{ 'common.errors.required' | translate }}
-        </my-form-error>
-      </my-form-field>
+        <!-- Pain duration to -->
+        <my-form-field class="flex-1 overflow-hidden">
+          <label for="toField" class="my-label">
+            {{ 'healthEvents.form.to' | translate }}
+          </label>
+          <input
+            id="toField"
+            type="datetime-local"
+            [placeholder]="'healthEvents.form.to' | translate"
+            formControlName="to"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+        </my-form-field>
+      } @else {
+        <!-- Drug date -->
+        <my-form-field class="flex-1 overflow-hidden">
+          <label for="dateField" class="my-label">
+            {{ 'healthEvents.form.date' | translate }}
+          </label>
+          <input
+            id="dateField"
+            type="datetime-local"
+            [placeholder]="'healthEvents.form.date' | translate"
+            formControlName="date"
+            class="my-input"
+          />
+          <my-form-error key="required">
+            {{ 'common.errors.required' | translate }}
+          </my-form-error>
+        </my-form-field>
+      }
     </form>
   </my-dialog-content>
 

@@ -1,5 +1,5 @@
 import { Service, Signal, signal } from '@angular/core';
-import { DocumentData, DocumentReference } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference, orderBy } from '@angular/fire/firestore';
 import { catchError, map, NEVER, tap } from 'rxjs';
 
 import { FirestoreBase } from '../../core';
@@ -26,7 +26,9 @@ export class HealthEventsState extends FirestoreBase<HealthEventInterface> {
   getHealthEvents(): void {
     this._loading.set(true);
 
-    this.getAll()
+    const query = [orderBy('created', 'desc')];
+
+    this.getAll(query)
       .pipe(
         map((data: DocumentData[]) => HealthEvent.buildFromDocumentsData(data)),
         tap((data: HealthEvent[]) => this._healthEvents.set(data)),

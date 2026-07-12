@@ -3,14 +3,16 @@ import { Component, inject, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { MyDialogState, MyToastState } from '../../../../library';
+import { ToDrugPipe } from '../../../../library/my-utils/pipes/to-drug/to-drug-pipe';
 import { ConfirmDialog } from '../../../../shared';
-import { HealthEvent } from '../../../../shared/models';
+import { HealthEvent, HealthEventPainTypeEnum, HealthEventTypeEnum } from '../../../../shared/models';
 import { HealthEventsState } from '../../../../state';
+import { DrugCard } from '../../../drugs-page/components/drug-card/drug-card';
 import { HealthEventFormDialog } from '../health-event-form-dialog/health-event-form-dialog';
 
 @Component({
   selector: 'app-health-event-card',
-  imports: [TranslatePipe, DatePipe],
+  imports: [TranslatePipe, DatePipe, DrugCard, ToDrugPipe],
   templateUrl: './health-event-card.html',
 })
 export class HealthEventCard {
@@ -20,6 +22,9 @@ export class HealthEventCard {
   private readonly _healthEventsState = inject(HealthEventsState);
 
   healthEvent = input.required<HealthEvent>();
+
+  readonly healthEventTypeEnum = HealthEventTypeEnum;
+  readonly healthEventPainTypeEnum = HealthEventPainTypeEnum;
 
   onClickDeleteHealthEvent(healthEvent: HealthEvent): void {
     const dialogRef = this._myDialogState.open(ConfirmDialog, {

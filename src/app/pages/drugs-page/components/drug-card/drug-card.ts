@@ -18,6 +18,7 @@ export class DrugCard {
   private readonly _drugsState = inject(DrugsState);
 
   drug = input.required<Drug>();
+  quantity = input<number | null>();
 
   onClickDeleteDrug(drug: Drug): void {
     const dialogRef = this._myDialogState.open(ConfirmDialog, {
