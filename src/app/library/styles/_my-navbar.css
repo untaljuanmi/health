@@ -3,10 +3,10 @@
     @apply pointer-events-none fixed bottom-0 left-0 flex w-full items-center justify-center gap-4 p-4;
 
     .my-navbar-button {
-      @apply flex h-14 max-h-14 min-h-14 cursor-pointer flex-col items-center justify-center gap-1 overflow-hidden rounded-full px-6 py-2 text-white transition-transform duration-100 outline-none select-none active:translate-y-0.5;
+      @apply flex h-14 max-h-14 min-h-14 cursor-pointer flex-col items-center justify-center gap-1 overflow-hidden rounded-full px-5 py-2 text-white transition-transform duration-100 outline-none select-none active:translate-y-0.5;
 
       .my-navbar-button-label {
-        @apply font-body-2xs;
+        @apply font-body-2xs max-w-full truncate;
       }
 
       &.my-navbar-button-active {

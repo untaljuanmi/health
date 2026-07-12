@@ -52,7 +52,7 @@
         >
           {{ 'healthEvents.form.painLevel' | translate }}
         </label>
-        <div class="flex items-start gap-4">
+        <div class="flex items-start gap-3">
           <my-form-field class="flex-1 overflow-hidden">
             <input
               id="painLevelField"
@@ -94,14 +94,14 @@
           <span class="my-label">
             {{ 'healthEvents.form.drugs' | translate }}
           </span>
-          <div class="border-my-secondary-default flex flex-col gap-4 rounded-lg border-2 p-4" formArrayName="drugs">
+          <div class="border-my-secondary-default flex flex-col gap-4 rounded-2xl border-2 p-4" formArrayName="drugs">
             @for (drugFormGroup of drugsFormArray.controls; track drugFormGroup; let _index = $index) {
-              <form [formGroupName]="_index" class="flex gap-4">
-                <my-form-field class="flex-1">
-                  <label [for]="`drugField-${_index}`" class="my-label truncate">
+              <form [formGroupName]="_index" class="flex gap-3">
+                <my-form-field class="min-w-30 flex-1">
+                  <label [for]="`drugField-${_index}`" class="my-label min-w-30 truncate">
                     {{ 'healthEvents.form.drug' | translate }}
                   </label>
-                  <select [id]="`drugField-${_index}`" formControlName="drug" class="my-select">
+                  <select [id]="`drugField-${_index}`" formControlName="drug" class="my-select w-auto min-w-30">
                     @for (_drug of _drugs; track _drug.id) {
                       <option [value]="_drug.id">
                         {{ _drug.name | translate }}
@@ -112,8 +112,8 @@
                     {{ 'common.errors.required' | translate }}
                   </my-form-error>
                 </my-form-field>
-                <my-form-field class="w-25 max-w-25 min-w-25 basis-25">
-                  <label [for]="`quantityField-${_index}`" class="my-label w-25 max-w-25 min-w-25 truncate">
+                <my-form-field class="w-21.5 max-w-21.5 min-w-21.5 basis-25">
+                  <label [for]="`quantityField-${_index}`" class="my-label w-21.5 max-w-21.5 min-w-21.5 truncate">
                     {{ 'healthEvents.form.quantity' | translate }}
                   </label>
                   <input
@@ -122,7 +122,7 @@
                     [min]="0"
                     [placeholder]="'healthEvents.form.quantity' | translate"
                     formControlName="quantity"
-                    class="my-input w-25 max-w-25 min-w-25"
+                    class="my-input w-21.5 max-w-21.5 min-w-21.5"
                   />
                   <my-form-error key="required">
                     {{ 'common.errors.required' | translate }}
@@ -131,7 +131,11 @@
                     {{ 'common.errors.min' | translate: { value: 0 } }}
                   </my-form-error>
                 </my-form-field>
-                <button type="button" class="my-icon-button danger mt-7 min-w-11" (click)="onClickRemoveDrug(_index)">
+                <button
+                  type="button"
+                  class="my-icon-button danger mt-8.5 h-8 max-h-8 min-h-8 w-8 max-w-8 min-w-8"
+                  (click)="onClickRemoveDrug(_index)"
+                >
                   <span class="mat-icon mat-icon-2xl">delete</span>
                 </button>
               </form>
