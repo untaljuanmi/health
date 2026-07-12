@@ -1,4 +1,4 @@
-import { DocumentData } from '@angular/fire/firestore';
+import { DocumentData, Timestamp } from '@angular/fire/firestore';
 
 export enum HealthEventTypeEnum {
   Pain = 'pain',
@@ -62,7 +62,20 @@ export class HealthEvent implements HealthEventInterface {
   }
 
   static buildFromDocumentData(document: DocumentData): HealthEvent {
-    return new HealthEvent(document);
+    const from = document['from'] as Timestamp;
+    const to = document['to'] as Timestamp;
+    const date = document['date'] as Timestamp;
+    const created = document['created'] as Timestamp;
+    const updated = document['created'] as Timestamp;
+
+    return new HealthEvent({
+      ...document,
+      from: from ? from.toDate() : null,
+      to: to ? to.toDate() : null,
+      date: date ? date.toDate() : null,
+      created: created ? created.toDate() : null,
+      updated: updated ? updated.toDate() : null,
+    });
   }
 
   static buildFromDocumentsData(data: DocumentData[]): HealthEvent[] {

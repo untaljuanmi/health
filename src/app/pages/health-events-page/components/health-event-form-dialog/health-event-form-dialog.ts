@@ -101,7 +101,10 @@ export class HealthEventFormDialog {
     if (payload.type === HealthEventTypeEnum.Pain) {
       payload.from = formDateIntoDate(payload.from as unknown as string);
       payload.to = formDateIntoDate(payload.to as unknown as string);
+      payload.date = null;
     } else {
+      payload.from = null;
+      payload.to = null;
       payload.date = formDateIntoDate(payload.date as unknown as string);
     }
 
@@ -146,9 +149,15 @@ export class HealthEventFormDialog {
       ]),
       drugs: this.buildDrugsFormArray(healthEvent?.drugs),
       notes: this._formBuilder.control(healthEvent?.notes ?? null),
-      from: this._formBuilder.control(healthEvent?.from ?? now, [Validators.required]),
-      to: this._formBuilder.control(healthEvent?.to ?? now, [Validators.required]),
-      date: this._formBuilder.control(healthEvent?.to ?? now, [Validators.required]),
+      from: this._formBuilder.control(healthEvent?.from ? dateIntoFormDateTime(healthEvent?.from) : now, [
+        Validators.required,
+      ]),
+      to: this._formBuilder.control(healthEvent?.to ? dateIntoFormDateTime(healthEvent?.to) : now, [
+        Validators.required,
+      ]),
+      date: this._formBuilder.control(healthEvent?.date ? dateIntoFormDateTime(healthEvent?.date) : now, [
+        Validators.required,
+      ]),
     });
   }
 
