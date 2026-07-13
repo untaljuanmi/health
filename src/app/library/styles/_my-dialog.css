@@ -1,17 +1,17 @@
 @layer components {
   my-dialog {
-    @apply relative flex flex-col w-full h-full p-0;
+    @apply relative flex h-full w-full flex-col p-0;
 
     my-dialog-header {
       @apply flex flex-col;
     }
 
     my-dialog-content {
-      @apply relative flex flex-col flex-1 p-0 m-0;
+      @apply relative m-0 flex flex-1 flex-col p-0;
     }
 
     my-dialog-footer {
-      @apply flex items-center flex-wrap gap-6 mt-6;
+      @apply mt-6 flex flex-wrap items-center gap-4;
 
       & > button.my-button {
         @apply flex-1;
