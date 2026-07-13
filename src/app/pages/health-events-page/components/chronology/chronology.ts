@@ -70,8 +70,6 @@ export class Chronology {
       chronology[yearKey][monthKey][dayKey].push(healthEvent);
     });
 
-    console.log(chronology);
-
     const years: ChronologyItemYearInterface[] = Object.entries(chronology)
       .sort(([firstYear], [secondYear]) => Number(secondYear) - Number(firstYear))
       .map(([year, months]) => ({
@@ -88,8 +86,6 @@ export class Chronology {
               })),
           })),
       }));
-
-    console.log(years);
 
     return { years };
   });

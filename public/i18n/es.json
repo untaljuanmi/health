@@ -113,7 +113,7 @@
     "confirm": {
       "delete": {
         "title": "Eliminar evento",
-        "description": "Esta acción no es irreversible. El evento será eliminado inmediatamente de la base de datos."
+        "description": "Esta acción es irreversible. El evento será eliminado inmediatamente de la base de datos."
       }
     },
     "success": {
@@ -141,7 +141,7 @@
     "confirm": {
       "delete": {
         "title": "Eliminar medicamento",
-        "description": "Esta acción no es irreversible. El medicamente será eliminado inmediatamente de la base de datos."
+        "description": "Esta acción es irreversible. El medicamente será eliminado inmediatamente de la base de datos."
       }
     },
     "success": {

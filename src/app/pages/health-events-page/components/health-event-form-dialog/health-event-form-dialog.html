@@ -12,13 +12,39 @@
 
   <my-dialog-content>
     <form [formGroup]="formGroup" class="flex flex-col gap-4">
+      <div class="flex items-center justify-center gap-2">
+        <button
+          class="my-button secondary h-8 max-h-8 min-h-8 gap-1 py-0 pr-3 pl-2"
+          [disabled]="_loading"
+          (click)="onClickQuickAction(1)"
+        >
+          <span class="mat-icon mat-icon-sm">bolt</span>
+          <span class="font-subtitle-sm">Sibelium</span>
+        </button>
+        <button
+          class="my-button secondary h-8 max-h-8 min-h-8 gap-1 py-0 pr-3 pl-2"
+          [disabled]="_loading"
+          (click)="onClickQuickAction(2)"
+        >
+          <span class="mat-icon mat-icon-sm">bolt</span>
+          <span class="font-subtitle-sm">Maxalt Max</span>
+        </button>
+        <button
+          class="my-button secondary h-8 max-h-8 min-h-8 gap-1 py-0 pr-3 pl-2"
+          [disabled]="_loading"
+          (click)="onClickQuickAction(3)"
+        >
+          <span class="mat-icon mat-icon-sm">bolt</span>
+          <span class="font-subtitle-sm">Ibuprofeno</span>
+        </button>
+      </div>
       <!-- Type -->
       <my-form-field>
         <label for="typeField" class="my-label">
           {{ 'healthEvents.form.type' | translate }}
         </label>
         <select id="typeField" formControlName="type" class="my-select">
-          @for (type of types(); track $index) {
+          @for (type of types(); track type) {
             <option [value]="type">
               {{ `healthEvents.type.${type}` | translate }}
             </option>
@@ -77,7 +103,7 @@
             </my-form-field>
             <my-form-field>
               <select id="painTypeField" formControlName="painType" class="my-select">
-                @for (painType of painTypes(); track $index) {
+                @for (painType of painTypes(); track painType) {
                   <option [value]="painType">
                     {{ `healthEvents.painType.${painType}` | translate }}
                   </option>
@@ -89,81 +115,7 @@
             </my-form-field>
           </div>
         </div>
-      }
 
-      @let _drugs = drugs();
-      @if (_drugs?.length) {
-        <div class="flex flex-col gap-1.5">
-          <span class="my-label">
-            {{ 'healthEvents.form.drugs' | translate }}
-          </span>
-          <div class="border-my-secondary-default flex flex-col gap-4 rounded-2xl border-2 p-4" formArrayName="drugs">
-            @for (drugFormGroup of drugsFormArray.controls; track drugFormGroup; let _index = $index) {
-              <form [formGroupName]="_index" class="flex gap-3">
-                <my-form-field class="min-w-30 flex-1">
-                  <label [for]="`drugField-${_index}`" class="my-label min-w-30 truncate">
-                    {{ 'healthEvents.form.drug' | translate }}
-                  </label>
-                  <select [id]="`drugField-${_index}`" formControlName="drug" class="my-select w-auto min-w-30">
-                    @for (_drug of _drugs; track _drug.id) {
-                      <option [value]="_drug.id">
-                        {{ _drug.name | translate }}
-                      </option>
-                    }
-                  </select>
-                  <my-form-error key="required">
-                    {{ 'common.errors.required' | translate }}
-                  </my-form-error>
-                </my-form-field>
-                <my-form-field class="w-21.5 max-w-21.5 min-w-21.5 basis-25">
-                  <label [for]="`quantityField-${_index}`" class="my-label w-21.5 max-w-21.5 min-w-21.5 truncate">
-                    {{ 'healthEvents.form.quantity' | translate }}
-                  </label>
-                  <input
-                    [id]="`quantityField-${_index}`"
-                    type="number"
-                    [min]="0"
-                    [placeholder]="'healthEvents.form.quantity' | translate"
-                    formControlName="quantity"
-                    class="my-input w-21.5 max-w-21.5 min-w-21.5"
-                  />
-                  <my-form-error key="required">
-                    {{ 'common.errors.required' | translate }}
-                  </my-form-error>
-                  <my-form-error key="min">
-                    {{ 'common.errors.min' | translate: { value: 0 } }}
-                  </my-form-error>
-                </my-form-field>
-                <button
-                  type="button"
-                  class="my-icon-button danger mt-8.5 h-8 max-h-8 min-h-8 w-8 max-w-8 min-w-8"
-                  (click)="onClickRemoveDrug(_index)"
-                >
-                  <span class="mat-icon mat-icon-2xl">delete</span>
-                </button>
-              </form>
-            } @empty {
-              <div class="bg-my-secondary-100 flex items-center justify-center rounded-lg px-4 py-8">
-                <span class="font-body-md text-my-secondary-default text-center select-none">
-                  {{ 'healthEvents.form.noDrugsHaveBeenAddedYet' | translate }}
-                </span>
-              </div>
-            }
-            <div class="flex justify-end select-none">
-              <button type="button" class="my-button text px-0" (click)="onClickAddNewDrug()">
-                <span class="mat-icon">add</span>
-                @if (drugsFormArray.length) {
-                  {{ 'healthEvents.form.addAnotherDrug' | translate }}
-                } @else {
-                  {{ 'healthEvents.form.addDrug' | translate }}
-                }
-              </button>
-            </div>
-          </div>
-        </div>
-      }
-
-      @if (_type === healthEventTypeEnum.Pain) {
         <!-- Pain duration from -->
         <my-form-field class="flex-1 overflow-hidden">
           <label for="fromField" class="my-label">
@@ -198,6 +150,79 @@
           </my-form-error>
         </my-form-field>
       } @else {
+        @let _drugs = drugs();
+        @if (_drugs?.length) {
+          <div class="flex flex-col gap-1.5">
+            <span class="my-label">
+              {{ 'healthEvents.form.drugs' | translate }}
+            </span>
+            <div class="border-my-secondary-default flex flex-col gap-4 rounded-2xl border-2 p-4" formArrayName="drugs">
+              @for (drugFormGroup of drugsFormArray.controls; track drugFormGroup; let _index = $index) {
+                <form [formGroupName]="_index" class="flex gap-3">
+                  <my-form-field class="min-w-30 flex-1">
+                    <label [for]="`drugField-${_index}`" class="my-label min-w-30 truncate">
+                      {{ 'healthEvents.form.drug' | translate }}
+                    </label>
+                    <select [id]="`drugField-${_index}`" formControlName="drug" class="my-select w-auto min-w-30">
+                      @for (_drug of _drugs; track _drug.id) {
+                        <option [value]="_drug.id">
+                          {{ _drug.name | translate }}
+                        </option>
+                      }
+                    </select>
+                    <my-form-error key="required">
+                      {{ 'common.errors.required' | translate }}
+                    </my-form-error>
+                  </my-form-field>
+                  <my-form-field class="w-21.5 max-w-21.5 min-w-21.5 basis-25">
+                    <label [for]="`quantityField-${_index}`" class="my-label w-21.5 max-w-21.5 min-w-21.5 truncate">
+                      {{ 'healthEvents.form.quantity' | translate }}
+                    </label>
+                    <input
+                      [id]="`quantityField-${_index}`"
+                      type="number"
+                      [min]="0"
+                      [placeholder]="'healthEvents.form.quantity' | translate"
+                      formControlName="quantity"
+                      class="my-input w-21.5 max-w-21.5 min-w-21.5"
+                    />
+                    <my-form-error key="required">
+                      {{ 'common.errors.required' | translate }}
+                    </my-form-error>
+                    <my-form-error key="min">
+                      {{ 'common.errors.min' | translate: { value: 0 } }}
+                    </my-form-error>
+                  </my-form-field>
+                  <button
+                    type="button"
+                    class="my-icon-button danger mt-8.5 h-8 max-h-8 min-h-8 w-8 max-w-8 min-w-8"
+                    [disabled]="_loading"
+                    (click)="onClickRemoveDrug(_index)"
+                  >
+                    <span class="mat-icon mat-icon-2xl">delete</span>
+                  </button>
+                </form>
+              } @empty {
+                <div class="bg-my-secondary-100 flex items-center justify-center rounded-lg px-4 py-8">
+                  <span class="font-body-md text-my-secondary-default text-center select-none">
+                    {{ 'healthEvents.form.noDrugsHaveBeenAddedYet' | translate }}
+                  </span>
+                </div>
+              }
+              <div class="flex justify-end select-none">
+                <button type="button" class="my-button text px-0" [disabled]="_loading" (click)="onClickAddNewDrug()">
+                  <span class="mat-icon">add</span>
+                  @if (drugsFormArray.length) {
+                    {{ 'healthEvents.form.addAnotherDrug' | translate }}
+                  } @else {
+                    {{ 'healthEvents.form.addDrug' | translate }}
+                  }
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+
         <!-- Drug date -->
         <my-form-field class="flex-1 overflow-hidden">
           <label for="dateField" class="my-label">

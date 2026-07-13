@@ -92,9 +92,9 @@
     <div class="flex flex-col gap-1">
       <span class="font-subtitle-sm">{{ 'healthEvents.form.duration' | translate }}</span>
       <div class="flex items-center justify-center gap-1 px-2">
-        <span class="font-subtitle-md">{{ _healthEvent.from | date: 'd MMM y, h:mm' : undefined : 'es' }}</span>
+        <span class="font-subtitle-md">{{ _healthEvent.from | date: 'd MMM y, HH:mm' : undefined : 'es' }}</span>
         <span class="mat-icon">arrow_right_alt</span>
-        <span class="font-subtitle-md">{{ _healthEvent.to | date: 'd MMM y, h:mm' : undefined : 'es' }}</span>
+        <span class="font-subtitle-md">{{ _healthEvent.to | date: 'd MMM y, HH:mm' : undefined : 'es' }}</span>
       </div>
     </div>
   } @else {
@@ -114,7 +114,7 @@
 
     <div class="flex flex-col gap-1">
       <span class="font-subtitle-sm">{{ 'healthEvents.form.date' | translate }}</span>
-      <span class="font-subtitle-md px-2">{{ _healthEvent.date | date: 'd MMM y, h:mm' : undefined : 'es' }}</span>
+      <span class="font-subtitle-md px-2">{{ _healthEvent.date | date: 'd MMM y, HH:mm' : undefined : 'es' }}</span>
     </div>
   }
 </div>
