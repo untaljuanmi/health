@@ -2,20 +2,23 @@
 <div class="flex flex-col gap-1">
   @for (_year of _chronology.years; track _year.label; let yFirst = $first) {
     @if (_chronology.years.length > 1) {
-      <span class="font-subtitle-sm" [class.mt-6]="!yFirst">
+      <span class="font-subtitle-sm select-text" [class.mt-6]="!yFirst">
         {{ _year.label }}
       </span>
     }
     @for (_month of _year.months; track _month.label; let mFirst = $first) {
       @if (_year.months.length > 1) {
-        <span class="font-subtitle-md" [class.mt-6]="!mFirst">
+        <span class="font-subtitle-md select-text" [class.mt-6]="!mFirst">
           {{ `healthEvents.chronology.months.${_month.label}` | translate }}
         </span>
       }
       @for (_day of _month.days; track _day.label; let dFirst = $first) {
-        <span class="font-subtitle-lg mb-2" [class.mt-6]="!dFirst">
-          {{ _day.label | date: 'EEEE d' : undefined : 'es' | titlecase }}
-        </span>
+        <div class="mb-2 flex items-center gap-1" [class.mt-6]="!dFirst">
+          <span class="mat-icon mat-icon-2xl">calendar_today</span>
+          <span class="font-subtitle-lg select-text">
+            {{ _day.label | date: 'EEEE d' : undefined : 'es' | titlecase }}
+          </span>
+        </div>
         <div class="flex flex-col gap-4">
           @for (_healthEvent of _day.healthEvents; track _healthEvent.id) {
             <app-health-event-card [healthEvent]="_healthEvent" />
