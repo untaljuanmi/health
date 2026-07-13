@@ -29,7 +29,7 @@
   @if (_healthEvent.description) {
     <div class="flex flex-col gap-1">
       <span class="font-subtitle-sm">{{ 'healthEvents.form.description' | translate }}</span>
-      <span class="font-body-md italic select-text">«{{ _healthEvent.description }}»</span>
+      <span class="font-body-md px-2 italic select-text">«{{ _healthEvent.description }}»</span>
     </div>
   }
 
@@ -66,7 +66,7 @@
 
     <div class="flex flex-col gap-2">
       <span class="font-subtitle-sm">{{ 'healthEvents.form.painLevel' | translate }}</span>
-      <div class="flex flex-wrap items-center justify-center gap-4">
+      <div class="flex flex-wrap items-center justify-center gap-4 px-2">
         @for (level of [1, 2, 3, 4, 5]; track level) {
           <span
             class="font-body-xs border-my-secondary-default flex h-8 w-8 items-center justify-center rounded-2xl border select-none"
@@ -91,25 +91,30 @@
 
     <div class="flex flex-col gap-1">
       <span class="font-subtitle-sm">{{ 'healthEvents.form.duration' | translate }}</span>
-      <div class="flex items-center justify-center gap-1">
-        <span class="font-subtitle-md">{{ _healthEvent.from | date: 'd MMM y, h:mm' }}</span>
+      <div class="flex items-center justify-center gap-1 px-2">
+        <span class="font-subtitle-md">{{ _healthEvent.from | date: 'd MMM y, h:mm' : undefined : 'es' }}</span>
         <span class="mat-icon">arrow_right_alt</span>
-        <span class="font-subtitle-md">{{ _healthEvent.to | date: 'd MMM y, h:mm' }}</span>
+        <span class="font-subtitle-md">{{ _healthEvent.to | date: 'd MMM y, h:mm' : undefined : 'es' }}</span>
       </div>
     </div>
-  }
-
-  @if (_healthEvent.drugs?.length) {
-    <div class="flex flex-col gap-1">
-      <span class="font-subtitle-sm">{{ 'healthEvents.form.drugs' | translate }}</span>
-      <div class="flex flex-col gap-2">
-        @for (_healthEventDrug of _healthEvent.drugs; track _healthEventDrug.drug) {
-          @let _drug = _healthEventDrug.drug | toDrug;
-          @if (_drug) {
-            <app-drug-card [drug]="_drug" [quantity]="_healthEventDrug.quantity" />
+  } @else {
+    @if (_healthEvent.drugs?.length) {
+      <div class="flex flex-col gap-1">
+        <span class="font-subtitle-sm">{{ 'healthEvents.form.drugs' | translate }}</span>
+        <div class="flex flex-col gap-2">
+          @for (_healthEventDrug of _healthEvent.drugs; track _healthEventDrug.drug) {
+            @let _drug = _healthEventDrug.drug | toDrug;
+            @if (_drug) {
+              <app-drug-card [drug]="_drug" [quantity]="_healthEventDrug.quantity" />
+            }
           }
-        }
+        </div>
       </div>
+    }
+
+    <div class="flex flex-col gap-1">
+      <span class="font-subtitle-sm">{{ 'healthEvents.form.date' | translate }}</span>
+      <span class="font-subtitle-md px-2">{{ _healthEvent.date | date: 'd MMM y, h:mm' : undefined : 'es' }}</span>
     </div>
   }
 </div>

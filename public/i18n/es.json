@@ -9,6 +9,9 @@
       "save": "Guardar",
       "saving": "Guardando..."
     },
+    "info": {
+      "pageUnderConstruction": "Página en construcción"
+    },
     "errors": {
       "required": "Este campo es obligatorio",
       "email": "Este correo no es válido",
@@ -90,6 +93,22 @@
       "from": "Desde",
       "to": "Hasta",
       "date": "Fecha"
+    },
+    "chronology": {
+      "months": {
+        "1": "Enero",
+        "2": "Febrero",
+        "3": "Marzo",
+        "4": "Abril",
+        "5": "Mayo",
+        "6": "Junio",
+        "7": "Julio",
+        "8": "Agosto",
+        "9": "Septiembre",
+        "10": "Octubre",
+        "11": "Noviembre",
+        "12": "Diciembre"
+      }
     },
     "confirm": {
       "delete": {

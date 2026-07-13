@@ -9,6 +9,9 @@
       "save": "Save",
       "saving": "Saving..."
     },
+    "info": {
+      "pageUnderConstruction": "Page under construction"
+    },
     "errors": {
       "required": "This field is required",
       "email": "This email is not valid",
@@ -90,6 +93,22 @@
       "from": "From",
       "to": "To",
       "date": "Date"
+    },
+    "chronology": {
+      "months": {
+        "1": "January",
+        "2": "February",
+        "3": "March",
+        "4": "April",
+        "5": "May",
+        "6": "June",
+        "7": "July",
+        "8": "August",
+        "9": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
     },
     "confirm": {
       "delete": {

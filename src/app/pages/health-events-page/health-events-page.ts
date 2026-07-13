@@ -2,22 +2,16 @@ import { Component, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { MyDialogState } from '../../library';
-import { HealthEventsState } from '../../state';
-import { HealthEventCard } from './components/health-event-card/health-event-card';
+import { Chronology } from './components/chronology/chronology';
 import { HealthEventFormDialog } from './components/health-event-form-dialog/health-event-form-dialog';
 
 @Component({
   selector: 'app-health-events-page',
-  imports: [TranslatePipe, HealthEventCard],
+  imports: [TranslatePipe, Chronology],
   templateUrl: './health-events-page.html',
 })
 export default class HealthEventsPage {
   private readonly _myDialogState = inject(MyDialogState);
-
-  private readonly _healthEventsState = inject(HealthEventsState);
-
-  readonly healthEvents = this._healthEventsState.healthEvents;
-  readonly loading = this._healthEventsState.loading;
 
   onClickAddHealthEvent(): void {
     this._myDialogState.open(HealthEventFormDialog);
