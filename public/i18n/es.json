@@ -60,7 +60,10 @@
     }
   },
   "home": {
-    "title": "Inicio"
+    "title": "Inicio",
+    "healthEventsCount": "Número de eventos de salud",
+    "thisMonth": "Este mes",
+    "thisYear": "Este año"
   },
   "healthEvents": {
     "title": "Eventos",

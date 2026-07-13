@@ -14,7 +14,7 @@
       }
       @for (_day of _month.days; track _day.label; let dFirst = $first) {
         <div class="mb-2 flex items-center gap-1" [class.mt-6]="!dFirst">
-          <span class="mat-icon mat-icon-2xl">calendar_today</span>
+          <span class="mat-icon mat-icon-lg">calendar_today</span>
           <span class="font-subtitle-lg select-text">
             {{ _day.label | date: 'EEEE d' : undefined : 'es' | titlecase }}
           </span>

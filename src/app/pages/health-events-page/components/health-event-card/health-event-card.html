@@ -3,12 +3,12 @@
   <div class="flex items-center justify-between gap-3">
     <div class="flex items-center gap-2">
       @if (_healthEvent.type === healthEventTypeEnum.Pain) {
-        <span class="mat-icon mat-icon-2xl">sick</span>
+        <span class="mat-icon mat-icon-lg">sick</span>
         <span class="font-subtitle-lg select-text">
           {{ `healthEvents.type.${_healthEvent.type}` | translate }}
         </span>
       } @else {
-        <span class="mat-icon mat-icon-2xl">pill</span>
+        <span class="mat-icon mat-icon-lg">pill</span>
         <span class="font-subtitle-lg select-text">
           {{ `healthEvents.type.${_healthEvent.type}` | translate }}
         </span>
