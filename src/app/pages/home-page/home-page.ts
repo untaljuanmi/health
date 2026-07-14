@@ -4,11 +4,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 import packageJson from '../../../../package.json';
 import { HealthEvent, HealthEventTypeEnum } from '../../shared/models';
 import { HealthEventsState } from '../../state';
-import { Chronology } from '../health-events-page/components/chronology/chronology';
 
 @Component({
   selector: 'app-home-page',
-  imports: [TranslatePipe, Chronology],
+  imports: [TranslatePipe],
   templateUrl: './home-page.html',
 })
 export default class HomePage {
