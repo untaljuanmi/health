@@ -61,7 +61,13 @@
   },
   "home": {
     "title": "Inicio",
-    "healthEventsCount": "Número de eventos de salud",
+    "todaySummary": "Resumen de hoy",
+    "registeredHealthEvent": "Evento de salud registrado",
+    "registeredHealthEvents": "Eventos de salud registrados",
+    "drugTaken": "Medicamento tomado",
+    "drugsTaken": "Medicamentos tomados",
+    "averagePain": "Dolor promedio",
+    "quickStats": "Estadísticas rápidas",
     "thisMonth": "Este mes",
     "thisYear": "Este año"
   },

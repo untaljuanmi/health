@@ -20,27 +20,46 @@ export default class HomePage {
     const healthEvents = this.healthEvents();
     const now = new Date();
 
-    const thisMonth = now.getMonth();
-    const thisYear = now.getFullYear();
-
-    let month = 0;
-    let year = 0;
+    const today = { drug: 0, pain: 0, painLevel: 0, painAverage: 0 };
+    const thisMonth = { drug: 0, pain: 0, painLevel: 0, painAverage: 0 };
+    const thisYear = { drug: 0, pain: 0, painLevel: 0, painAverage: 0 };
 
     healthEvents.forEach((healthEvent: HealthEvent) => {
-      if (healthEvent.type === HealthEventTypeEnum.Drug) {
-        return;
-      }
+      const date = healthEvent.type === HealthEventTypeEnum.Pain ? healthEvent.from : healthEvent.date;
 
-      if (healthEvent.from?.getFullYear() === thisYear) {
-        year++;
+      if (date?.getFullYear() === now.getFullYear()) {
+        thisYear.drug = healthEvent.type === HealthEventTypeEnum.Drug ? thisYear.drug + 1 : thisYear.drug;
+        thisYear.pain = healthEvent.type === HealthEventTypeEnum.Pain ? thisYear.pain + 1 : thisYear.pain;
+        thisYear.painLevel =
+          healthEvent.type === HealthEventTypeEnum.Pain
+            ? thisYear.painLevel + (healthEvent.painLevel ?? 0)
+            : thisYear.painLevel;
 
-        if (healthEvent.from?.getMonth() === thisMonth) {
-          month++;
+        if (date?.getMonth() === now.getMonth()) {
+          thisMonth.drug = healthEvent.type === HealthEventTypeEnum.Drug ? thisMonth.drug + 1 : thisMonth.drug;
+          thisMonth.pain = healthEvent.type === HealthEventTypeEnum.Pain ? thisMonth.pain + 1 : thisMonth.pain;
+          thisMonth.painLevel =
+            healthEvent.type === HealthEventTypeEnum.Pain
+              ? thisMonth.painLevel + (healthEvent.painLevel ?? 0)
+              : thisMonth.painLevel;
+
+          if (date?.getDate() === now.getDate()) {
+            today.drug = healthEvent.type === HealthEventTypeEnum.Drug ? today.drug + 1 : today.drug;
+            today.pain = healthEvent.type === HealthEventTypeEnum.Pain ? today.pain + 1 : today.pain;
+            today.painLevel =
+              healthEvent.type === HealthEventTypeEnum.Pain
+                ? today.painLevel + (healthEvent.painLevel ?? 0)
+                : today.painLevel;
+          }
         }
       }
     });
 
-    return { month, year };
+    today.painAverage = today.painLevel / today.pain;
+    thisMonth.painAverage = thisMonth.painLevel / thisMonth.pain;
+    thisYear.painAverage = thisYear.painLevel / thisYear.pain;
+
+    return { today, thisMonth, thisYear };
   });
 
   protected readonly appVersion = packageJson.version;

@@ -61,7 +61,13 @@
   },
   "home": {
     "title": "Home",
-    "healthEventsCount": "Number of health events",
+    "todaySummary": "Today's summary",
+    "registeredHealthEvent": "Registered health event",
+    "registeredHealthEvents": "Registered health events",
+    "drugTaken": "Drug taken",
+    "drugsTaken": "Drugs taken:",
+    "averagePain": "Average pain:",
+    "quickStats": "Quick stats",
     "thisMonth": "This month",
     "thisYear": "This year"
   },
