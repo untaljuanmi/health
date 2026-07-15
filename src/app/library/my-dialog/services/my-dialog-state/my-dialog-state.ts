@@ -3,6 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { inject, Injector, Service } from '@angular/core';
 
 import { MY_DIALOG_TOKEN } from '../../consts';
+import { MyDialogAnimation } from '../../directives/my-dialog-animation';
 import { MyDialogConfigInterface } from '../../interfaces';
 import { MyDialogRefModel } from '../../models';
 
@@ -41,7 +42,7 @@ export class MyDialogState {
       ],
     });
 
-    const portal = new ComponentPortal<T>(component, null, injector);
+    const portal = new ComponentPortal<T>(component, null, injector, null, undefined, [MyDialogAnimation]);
 
     overlayRef.attach(portal);
 

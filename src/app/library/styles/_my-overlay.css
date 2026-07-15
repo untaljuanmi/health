@@ -1,6 +1,6 @@
 @layer components {
   .my-overlay-backdrop {
-    @apply bg-black/25;
+    @apply bg-black/25 duration-180;
   }
 
   .cdk-overlay-container:has(.my-dialog-panel) {
@@ -12,10 +12,10 @@
   }
 
   .my-dialog-panel {
-    @apply overflow-hidden rounded-4xl bg-gray-50 shadow-lg dark:bg-gray-900;
+    @apply overflow-visible;
 
-    & > * {
-      @apply w-full;
+    .my-dialog-surface {
+      @apply block h-full max-h-[inherit] min-h-[inherit] w-full overflow-hidden rounded-4xl bg-gray-50 shadow-lg dark:bg-gray-900;
     }
   }
 }

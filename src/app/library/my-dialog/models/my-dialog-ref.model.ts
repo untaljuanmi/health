@@ -4,6 +4,8 @@ import { Observable, Subject } from 'rxjs';
 export class MyDialogRefModel {
   private readonly _afterClosedSubject = new Subject<unknown>();
 
+  private _closing = false;
+
   constructor(private _overlayRef: OverlayRef) {}
 
   get closed(): Observable<unknown> {
@@ -11,13 +13,15 @@ export class MyDialogRefModel {
   }
 
   close(result?: unknown): void {
-    // this._overlayRef.addPanelClass('my-dialog-panel-exit-animation');
-    // this._overlayRef.detachBackdrop();
+    if (this._closing || !this._overlayRef.hasAttached()) {
+      return;
+    }
+
+    this._closing = true;
+    this._overlayRef.detach();
     this._afterClosedSubject.next(result);
     this._afterClosedSubject.complete();
-    this._overlayRef.dispose();
-    // setTimeout((): void => {
-    // }, 400);
+    this._closing = false;
   }
 
   listenBackdropClick(): void {
