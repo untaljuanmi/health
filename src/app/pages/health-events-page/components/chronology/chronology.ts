@@ -1,5 +1,5 @@
 import { DatePipe, TitleCasePipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { dateIntoFormDate } from '../../../../library/my-utils';
@@ -36,6 +36,10 @@ export class Chronology {
 
   readonly healthEvents = this._healthEventsState.healthEvents;
   readonly loading = this._healthEventsState.loading;
+
+  readonly today = signal<Date>(new Date());
+  readonly todayLabel = computed(() => dateIntoFormDate(this.today()));
+  readonly yesterdayLabel = computed(() => dateIntoFormDate(new Date(this.today().getTime() - 24 * 60 * 60 * 1000)));
 
   readonly chronology = computed((): ChronologyItemInterface => {
     const healthEvents = this.healthEvents();

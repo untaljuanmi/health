@@ -16,6 +16,11 @@
         <div class="mb-2 ml-6 flex items-center gap-1" [class.mt-6]="!dFirst">
           <span class="mat-icon mat-icon-lg">calendar_today</span>
           <span class="font-subtitle-lg select-text">
+            @if (_day.label === todayLabel()) {
+              {{ 'healthEvents.today' | translate }},
+            } @else if (_day.label === yesterdayLabel()) {
+              {{ 'healthEvents.yesterday' | translate }},
+            }
             {{ _day.label | date: 'EEEE d' : undefined : 'es' | titlecase }}
           </span>
         </div>

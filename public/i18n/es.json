@@ -74,6 +74,8 @@
     "title": "Eventos",
     "noEvents": "No hay eventos de salud registrados",
     "everythingSeemsAlright": "¡Parece que todo marcha correctamente!",
+    "today": "Hoy",
+    "yesterday": "Ayer",
     "type": {
       "pain": "Dolor",
       "drug": "Toma de medicamento"
