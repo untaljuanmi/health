@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import packageJson from '../../../../package.json';
 import { HealthEvent, HealthEventTypeEnum } from '../../shared/models';
 import { HealthEventsState } from '../../state';
+import { MonthCalendar } from './components/month-calendar/month-calendar';
 import { QuickStatCard } from './components/quick-stat-card/quick-stat-card';
 import {
   addHealthEventToSummary,
@@ -16,7 +17,7 @@ import {
 
 @Component({
   selector: 'app-home-page',
-  imports: [TranslatePipe, QuickStatCard],
+  imports: [TranslatePipe, MonthCalendar, QuickStatCard],
   templateUrl: './home-page.html',
 })
 export default class HomePage {

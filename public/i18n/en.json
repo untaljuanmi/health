@@ -68,7 +68,18 @@
     "today": "Today",
     "thisWeek": "This week",
     "thisMonth": "This month",
-    "thisYear": "This year"
+    "thisYear": "This year",
+    "calendar": {
+      "weekdays": {
+        "monday": "Mon",
+        "tuesday": "Tue",
+        "wednesday": "Wed",
+        "thursday": "Thu",
+        "friday": "Fri",
+        "saturday": "Sat",
+        "sunday": "Sun"
+      }
+    }
   },
   "healthEvents": {
     "title": "Events",

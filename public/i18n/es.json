@@ -68,7 +68,18 @@
     "today": "Hoy",
     "thisWeek": "Esta semana",
     "thisMonth": "Este mes",
-    "thisYear": "Este año"
+    "thisYear": "Este año",
+    "calendar": {
+      "weekdays": {
+        "monday": "Lun",
+        "tuesday": "Mar",
+        "wednesday": "Mié",
+        "thursday": "Jue",
+        "friday": "Vie",
+        "saturday": "Sáb",
+        "sunday": "Dom"
+      }
+    }
   },
   "healthEvents": {
     "title": "Eventos",
