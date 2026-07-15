@@ -6,8 +6,8 @@
   [class.bg-my-secondary-100]="!!_quantity"
 >
   <div class="flex items-center justify-between gap-3">
-    <div class="flex items-center gap-3">
-      <span class="font-subtitle-lg select-text">{{ _drug.name }}</span>
+    <div class="flex items-center gap-3 overflow-hidden">
+      <span class="font-subtitle-lg truncate select-text">{{ _drug.name }}</span>
       <div class="bg-my-primary-default flex items-center justify-center gap-1 rounded-lg px-1.5 py-0.5">
         <span class="font-body-2xs">{{ _drug.measure }}</span>
         <span class="font-body-2xs">{{ _drug.measureType }}</span>
@@ -31,6 +31,6 @@
 
   @if (_drug.description && !_quantity) {
     <hr class="my-divider" />
-    <span class="font-body-md select-text">{{ _drug.description }}</span>
+    <span class="font-body-md italic select-text">«{{ _drug.description }}»</span>
   }
 </div>

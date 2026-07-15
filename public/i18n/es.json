@@ -3,7 +3,6 @@
   "common": {
     "buttons": {
       "add": "Añadir",
-      "record": "Registrar",
       "cancel": "Cancelar",
       "accept": "Aceptar",
       "save": "Guardar",

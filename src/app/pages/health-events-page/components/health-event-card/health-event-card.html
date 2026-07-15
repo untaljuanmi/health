@@ -1,15 +1,15 @@
 @let _healthEvent = healthEvent();
 <div class="bg-my-secondary-50 flex flex-col gap-3 rounded-3xl p-5 shadow-sm">
   <div class="flex items-center justify-between gap-3">
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 overflow-hidden">
       @if (_healthEvent.type === healthEventTypeEnum.Pain) {
         <span class="mat-icon mat-icon-lg">sick</span>
-        <span class="font-subtitle-lg select-text">
+        <span class="font-subtitle-lg truncate select-text">
           {{ `healthEvents.type.${_healthEvent.type}` | translate }}
         </span>
       } @else {
         <span class="mat-icon mat-icon-lg">pill</span>
-        <span class="font-subtitle-lg select-text">
+        <span class="font-subtitle-lg truncate select-text">
           {{ `healthEvents.type.${_healthEvent.type}` | translate }}
         </span>
       }
@@ -92,9 +92,13 @@
     <div class="flex flex-col gap-1">
       <span class="font-subtitle-sm">{{ 'healthEvents.form.duration' | translate }}</span>
       <div class="flex items-center justify-center gap-1 px-2">
-        <span class="font-subtitle-md">{{ _healthEvent.from | date: 'd MMM y, HH:mm' : undefined : 'es' }}</span>
+        <span class="font-subtitle-md truncate">
+          {{ _healthEvent.from | date: 'd MMM y, HH:mm' : undefined : 'es' }}
+        </span>
         <span class="mat-icon">arrow_right_alt</span>
-        <span class="font-subtitle-md">{{ _healthEvent.to | date: 'd MMM y, HH:mm' : undefined : 'es' }}</span>
+        <span class="font-subtitle-md truncate">
+          {{ _healthEvent.to | date: 'd MMM y, HH:mm' : undefined : 'es' }}
+        </span>
       </div>
     </div>
   } @else {

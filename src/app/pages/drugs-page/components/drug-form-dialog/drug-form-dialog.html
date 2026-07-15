@@ -6,7 +6,9 @@
     <span class="mat-icon mat-icon-3xl text-my-primary-default">
       {{ _drug ? 'border_color' : 'pill' }}
     </span>
-    {{ (_drug ? 'drugs.form.editDrug' : 'drugs.form.addDrug') | translate }}
+    <span class="truncate">
+      {{ (_drug ? 'drugs.form.editDrug' : 'drugs.form.addDrug') | translate }}
+    </span>
   </my-dialog-header>
 
   <my-dialog-content>
@@ -52,7 +54,7 @@
         >
           {{ 'drugs.form.measure' | translate }}
         </label>
-        <div class="flex items-start gap-3">
+        <div class="flex flex-wrap items-start gap-x-3 gap-y-4">
           <my-form-field class="flex-1 overflow-hidden">
             <input
               id="measureField"

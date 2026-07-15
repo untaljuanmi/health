@@ -7,7 +7,9 @@
     <span class="mat-icon mat-icon-3xl text-my-primary-default">
       {{ _healthEvent ? 'border_color' : 'event' }}
     </span>
-    {{ (_healthEvent ? 'healthEvents.form.editHealthEvent' : 'healthEvents.form.addHealthEvent') | translate }}
+    <span class="truncate">
+      {{ (_healthEvent ? 'healthEvents.form.editHealthEvent' : 'healthEvents.form.addHealthEvent') | translate }}
+    </span>
   </my-dialog-header>
 
   <my-dialog-content>
@@ -80,7 +82,7 @@
           >
             {{ 'healthEvents.form.painLevel' | translate }}
           </label>
-          <div class="flex items-start gap-3">
+          <div class="flex flex-wrap items-start gap-x-3 gap-y-4">
             <my-form-field class="flex-1 overflow-hidden">
               <input
                 id="painLevelField"
@@ -158,7 +160,7 @@
             </span>
             <div class="border-my-secondary-default flex flex-col gap-4 rounded-2xl border-2 p-4" formArrayName="drugs">
               @for (drugFormGroup of drugsFormArray.controls; track drugFormGroup; let _index = $index) {
-                <form [formGroupName]="_index" class="flex gap-3">
+                <form [formGroupName]="_index" class="flex flex-wrap gap-x-3 gap-y-4">
                   <my-form-field class="min-w-30 flex-1">
                     <label [for]="`drugField-${_index}`" class="my-label min-w-30 truncate">
                       {{ 'healthEvents.form.drug' | translate }}
