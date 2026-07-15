@@ -62,8 +62,8 @@
   "home": {
     "title": "Inicio",
     "todaySummary": "Resumen de hoy",
-    "registeredHealthEvent": "Evento de salud registrado",
-    "registeredHealthEvents": "Eventos de salud registrados",
+    "registeredHealthEvent": "Evento registrado",
+    "registeredHealthEvents": "Eventos registrados",
     "drugTaken": "Medicamento tomado",
     "drugsTaken": "Medicamentos tomados",
     "averagePain": "Dolor promedio",
