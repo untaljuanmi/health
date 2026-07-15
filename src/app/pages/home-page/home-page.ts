@@ -4,10 +4,19 @@ import { TranslatePipe } from '@ngx-translate/core';
 import packageJson from '../../../../package.json';
 import { HealthEvent, HealthEventTypeEnum } from '../../shared/models';
 import { HealthEventsState } from '../../state';
+import { QuickStatCard } from './components/quick-stat-card/quick-stat-card';
+import {
+  addHealthEventToSummary,
+  buildDateRanges,
+  createSummary,
+  HomePagePeriod,
+  HomePageStateInterface,
+  isDateInRange,
+} from './models/home-page.model';
 
 @Component({
   selector: 'app-home-page',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, QuickStatCard],
   templateUrl: './home-page.html',
 })
 export default class HomePage {
@@ -16,51 +25,44 @@ export default class HomePage {
   readonly healthEvents = this._healthEventsState.healthEvents;
   readonly loading = this._healthEventsState.loading;
 
-  readonly state = computed(() => {
+  readonly state = computed((): HomePageStateInterface => {
     const healthEvents = this.healthEvents();
-    const now = new Date();
+    const ranges = buildDateRanges(new Date());
 
-    const today = { drug: 0, pain: 0, painLevel: 0, painAverage: 0 };
-    const thisMonth = { drug: 0, pain: 0, painLevel: 0, painAverage: 0 };
-    const thisYear = { drug: 0, pain: 0, painLevel: 0, painAverage: 0 };
+    const state: HomePageStateInterface = {
+      today: createSummary(),
+      yesterday: createSummary(),
+      thisWeek: createSummary(),
+      lastWeek: createSummary(),
+      thisMonth: createSummary(),
+      lastMonth: createSummary(),
+      thisYear: createSummary(),
+      lastYear: createSummary(),
+    };
+
+    const periods = Object.keys(state) as HomePagePeriod[];
 
     healthEvents.forEach((healthEvent: HealthEvent) => {
       const date = healthEvent.type === HealthEventTypeEnum.Pain ? healthEvent.from : healthEvent.date;
 
-      if (date?.getFullYear() === now.getFullYear()) {
-        thisYear.drug = healthEvent.type === HealthEventTypeEnum.Drug ? thisYear.drug + 1 : thisYear.drug;
-        thisYear.pain = healthEvent.type === HealthEventTypeEnum.Pain ? thisYear.pain + 1 : thisYear.pain;
-        thisYear.painLevel =
-          healthEvent.type === HealthEventTypeEnum.Pain
-            ? thisYear.painLevel + (healthEvent.painLevel ?? 0)
-            : thisYear.painLevel;
-
-        if (date?.getMonth() === now.getMonth()) {
-          thisMonth.drug = healthEvent.type === HealthEventTypeEnum.Drug ? thisMonth.drug + 1 : thisMonth.drug;
-          thisMonth.pain = healthEvent.type === HealthEventTypeEnum.Pain ? thisMonth.pain + 1 : thisMonth.pain;
-          thisMonth.painLevel =
-            healthEvent.type === HealthEventTypeEnum.Pain
-              ? thisMonth.painLevel + (healthEvent.painLevel ?? 0)
-              : thisMonth.painLevel;
-
-          if (date?.getDate() === now.getDate()) {
-            today.drug = healthEvent.type === HealthEventTypeEnum.Drug ? today.drug + 1 : today.drug;
-            today.pain = healthEvent.type === HealthEventTypeEnum.Pain ? today.pain + 1 : today.pain;
-            today.painLevel =
-              healthEvent.type === HealthEventTypeEnum.Pain
-                ? today.painLevel + (healthEvent.painLevel ?? 0)
-                : today.painLevel;
-          }
-        }
+      if (!date) {
+        return;
       }
+
+      periods.forEach((period: HomePagePeriod) => {
+        if (isDateInRange(date, ranges[period])) {
+          addHealthEventToSummary(state[period], healthEvent);
+        }
+      });
     });
 
-    today.painAverage = today.painLevel / today.pain;
-    thisMonth.painAverage = thisMonth.painLevel / thisMonth.pain;
-    thisYear.painAverage = thisYear.painLevel / thisYear.pain;
+    periods.forEach((period: HomePagePeriod) => {
+      const summary = state[period];
+      summary.painAverage = Math.round((summary.painLevel / summary.pain) * 10) / 10;
+    });
 
-    return { today, thisMonth, thisYear };
+    return state;
   });
 
-  protected readonly appVersion = packageJson.version;
+  readonly appVersion = packageJson.version;
 }

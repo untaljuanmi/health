@@ -12,156 +12,108 @@
   <div class="page-content">
     <div class="flex flex-col gap-3">
       <h2 class="font-subtitle-lg ml-6 flex items-center gap-1 select-text">
-        {{ 'home.todaySummary' | translate }}
+        {{ 'home.today' | translate }}
       </h2>
       <div class="page-content-box">
         <div class="flex gap-3">
-          <div
-            class="bg-my-secondary-50 flex min-h-40.5 flex-1 flex-col items-center justify-center gap-2 rounded-3xl p-5 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-3xl animate-spin">progress_activity</span>
+          <app-quick-stat-card class="flex-1" [icon]="'sick'" [value]="_state.today.pain">
+            @if (_state.today.pain === 1) {
+              {{ 'home.registeredHealthEvent' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-5xl">sick</span>
-              <span class="font-subtitle-3xl select-text">{{ _state.today.pain }}</span>
-              <span class="font-body-md min-h-11 text-center select-text">
-                @if (_state.today.pain === 1) {
-                  {{ 'home.registeredHealthEvent' | translate }}
-                } @else {
-                  {{ 'home.registeredHealthEvents' | translate }}
-                }
-              </span>
+              {{ 'home.registeredHealthEvents' | translate }}
             }
-          </div>
-          <div
-            class="bg-my-secondary-50 flex min-h-40.5 flex-1 flex-col items-center justify-center gap-2 rounded-3xl p-5 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-3xl animate-spin">progress_activity</span>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'pill'" [value]="_state.today.drug">
+            @if (_state.today.drug === 1) {
+              {{ 'home.drugTaken' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-5xl">pill</span>
-              <span class="font-subtitle-3xl">{{ _state.today.drug }}</span>
-              <span class="font-body-md min-h-11 text-center select-text">
-                @if (_state.today.drug === 1) {
-                  {{ 'home.drugTaken' | translate }}
-                } @else {
-                  {{ 'home.drugsTaken' | translate }}
-                }
-              </span>
+              {{ 'home.drugsTaken' | translate }}
             }
-          </div>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.today.painAverage}/5`">
+            {{ 'home.averagePain' | translate }}
+          </app-quick-stat-card>
         </div>
       </div>
     </div>
 
     <div class="flex flex-col gap-3">
       <h2 class="font-subtitle-lg ml-6 flex items-center gap-1 select-text">
-        {{ 'home.quickStats' | translate }}
+        {{ 'home.thisWeek' | translate }}
       </h2>
       <div class="page-content-box">
-        <h3 class="font-subtitle-md ml-3 select-text">
-          {{ 'home.thisMonth' | translate }}
-        </h3>
         <div class="flex gap-3">
-          <div
-            class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
+          <app-quick-stat-card class="flex-1" [icon]="'sick'" [value]="_state.thisWeek.pain">
+            @if (_state.thisWeek.pain === 1) {
+              {{ 'home.registeredHealthEvent' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-4xl">sick</span>
-              <span class="font-subtitle-2xl select-text">{{ _state.thisMonth.pain }}</span>
-              <span class="font-body-xs min-h-9 text-center select-text">
-                @if (_state.thisMonth.pain === 1) {
-                  {{ 'home.registeredHealthEvent' | translate }}
-                } @else {
-                  {{ 'home.registeredHealthEvents' | translate }}
-                }
-              </span>
+              {{ 'home.registeredHealthEvents' | translate }}
             }
-          </div>
-          <div
-            class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'pill'" [value]="_state.thisWeek.drug">
+            @if (_state.thisWeek.drug === 1) {
+              {{ 'home.drugTaken' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-4xl">pill</span>
-              <span class="font-subtitle-2xl">{{ _state.thisMonth.drug }}</span>
-              <span class="font-body-xs min-h-9 text-center select-text">
-                @if (_state.thisMonth.drug === 1) {
-                  {{ 'home.drugTaken' | translate }}
-                } @else {
-                  {{ 'home.drugsTaken' | translate }}
-                }
-              </span>
+              {{ 'home.drugsTaken' | translate }}
             }
-          </div>
-          <div
-            class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
-            } @else {
-              <span class="mat-icon mat-icon-4xl">trending_up</span>
-              <span class="font-subtitle-2xl">{{ _state.thisMonth.painAverage }}/{{ '5' }}</span>
-              <span class="font-body-xs min-h-9 text-center select-text">
-                {{ 'home.averagePain' | translate }}
-              </span>
-            }
-          </div>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.thisWeek.painAverage}/5`">
+            {{ 'home.averagePain' | translate }}
+          </app-quick-stat-card>
         </div>
-        <h3 class="font-subtitle-md ml-3 select-text">
-          {{ 'home.thisYear' | translate }}
-        </h3>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <h2 class="font-subtitle-lg ml-6 flex items-center gap-1 select-text">
+        {{ 'home.thisMonth' | translate }}
+      </h2>
+      <div class="page-content-box">
         <div class="flex gap-3">
-          <div
-            class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
+          <app-quick-stat-card class="flex-1" [icon]="'sick'" [value]="_state.thisMonth.pain">
+            @if (_state.thisMonth.pain === 1) {
+              {{ 'home.registeredHealthEvent' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-4xl">sick</span>
-              <span class="font-subtitle-2xl select-text">{{ _state.thisYear.pain }}</span>
-              <span class="font-body-xs min-h-9 text-center select-text">
-                @if (_state.thisYear.pain === 1) {
-                  {{ 'home.registeredHealthEvent' | translate }}
-                } @else {
-                  {{ 'home.registeredHealthEvents' | translate }}
-                }
-              </span>
+              {{ 'home.registeredHealthEvents' | translate }}
             }
-          </div>
-          <div
-            class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'pill'" [value]="_state.thisMonth.drug">
+            @if (_state.thisMonth.drug === 1) {
+              {{ 'home.drugTaken' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-4xl">pill</span>
-              <span class="font-subtitle-2xl">{{ _state.thisYear.drug }}</span>
-              <span class="font-body-xs min-h-9 text-center select-text">
-                @if (_state.thisYear.drug === 1) {
-                  {{ 'home.drugTaken' | translate }}
-                } @else {
-                  {{ 'home.drugsTaken' | translate }}
-                }
-              </span>
+              {{ 'home.drugsTaken' | translate }}
             }
-          </div>
-          <div
-            class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
-          >
-            @if (_loading) {
-              <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.thisMonth.painAverage}/5`">
+            {{ 'home.averagePain' | translate }}
+          </app-quick-stat-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <h2 class="font-subtitle-lg ml-6 flex items-center gap-1 select-text">
+        {{ 'home.thisYear' | translate }}
+      </h2>
+      <div class="page-content-box">
+        <div class="flex gap-3">
+          <app-quick-stat-card class="flex-1" [icon]="'sick'" [value]="_state.thisYear.pain">
+            @if (_state.thisYear.pain === 1) {
+              {{ 'home.registeredHealthEvent' | translate }}
             } @else {
-              <span class="mat-icon mat-icon-4xl">trending_up</span>
-              <span class="font-subtitle-2xl">{{ _state.thisYear.painAverage }}/{{ '5' }}</span>
-              <span class="font-body-xs min-h-9 text-center select-text">
-                {{ 'home.averagePain' | translate }}
-              </span>
+              {{ 'home.registeredHealthEvents' | translate }}
             }
-          </div>
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'pill'" [value]="_state.thisYear.drug">
+            @if (_state.thisYear.drug === 1) {
+              {{ 'home.drugTaken' | translate }}
+            } @else {
+              {{ 'home.drugsTaken' | translate }}
+            }
+          </app-quick-stat-card>
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.thisYear.painAverage}/5`">
+            {{ 'home.averagePain' | translate }}
+          </app-quick-stat-card>
         </div>
       </div>
     </div>

@@ -61,13 +61,13 @@
   },
   "home": {
     "title": "Inicio",
-    "todaySummary": "Resumen de hoy",
     "registeredHealthEvent": "Evento registrado",
     "registeredHealthEvents": "Eventos registrados",
     "drugTaken": "Medicamento tomado",
     "drugsTaken": "Medicamentos tomados",
     "averagePain": "Dolor promedio",
-    "quickStats": "Estadísticas rápidas",
+    "today": "Hoy",
+    "thisWeek": "Esta semana",
     "thisMonth": "Este mes",
     "thisYear": "Este año"
   },

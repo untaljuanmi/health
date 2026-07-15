@@ -1,0 +1,13 @@
+<div
+  class="bg-my-secondary-50 flex min-h-32 flex-1 flex-col items-center justify-center gap-1 rounded-3xl p-3 shadow-sm"
+>
+  @if (loading()) {
+    <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
+  } @else {
+    <span class="mat-icon mat-icon-4xl">{{ icon() }}</span>
+    <span class="font-subtitle-2xl select-text">{{ value() }}</span>
+    <span class="font-body-xs min-h-9 text-center select-text">
+      <ng-content />
+    </span>
+  }
+</div>

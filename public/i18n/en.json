@@ -61,13 +61,13 @@
   },
   "home": {
     "title": "Home",
-    "todaySummary": "Today's summary",
     "registeredHealthEvent": "Registered event",
     "registeredHealthEvents": "Registered events",
     "drugTaken": "Drug taken",
     "drugsTaken": "Drugs taken:",
     "averagePain": "Average pain:",
-    "quickStats": "Quick stats",
+    "today": "Today",
+    "thisWeek": "This week",
     "thisMonth": "This month",
     "thisYear": "This year"
   },
