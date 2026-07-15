@@ -8,6 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class QuickStatCard {
   icon = input<string>();
-  value = input<string | number>();
+  value = input<number>();
+  outOf = input<number>();
   loading = input<boolean>(false);
 }

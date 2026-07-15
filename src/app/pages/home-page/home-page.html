@@ -30,7 +30,7 @@
               {{ 'home.drugsTaken' | translate }}
             }
           </app-quick-stat-card>
-          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.today.painAverage}/5`">
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="_state.today.painAverage" [outOf]="5">
             {{ 'home.averagePain' | translate }}
           </app-quick-stat-card>
         </div>
@@ -57,7 +57,7 @@
               {{ 'home.drugsTaken' | translate }}
             }
           </app-quick-stat-card>
-          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.thisWeek.painAverage}/5`">
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="_state.thisWeek.painAverage" [outOf]="5">
             {{ 'home.averagePain' | translate }}
           </app-quick-stat-card>
         </div>
@@ -84,7 +84,7 @@
               {{ 'home.drugsTaken' | translate }}
             }
           </app-quick-stat-card>
-          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.thisMonth.painAverage}/5`">
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="_state.thisMonth.painAverage" [outOf]="5">
             {{ 'home.averagePain' | translate }}
           </app-quick-stat-card>
         </div>
@@ -111,7 +111,7 @@
               {{ 'home.drugsTaken' | translate }}
             }
           </app-quick-stat-card>
-          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="`${_state.thisYear.painAverage}/5`">
+          <app-quick-stat-card class="flex-1" [icon]="'trending_up'" [value]="_state.thisYear.painAverage" [outOf]="5">
             {{ 'home.averagePain' | translate }}
           </app-quick-stat-card>
         </div>

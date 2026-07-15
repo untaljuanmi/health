@@ -5,7 +5,25 @@
     <span class="mat-icon mat-icon-2xl animate-spin">progress_activity</span>
   } @else {
     <span class="mat-icon mat-icon-4xl">{{ icon() }}</span>
-    <span class="font-subtitle-2xl select-text">{{ value() }}</span>
+
+    @let _value = value();
+    @let _outOf = outOf();
+    @let _showColorCodes = _outOf && _value;
+    <span
+      class="font-subtitle-2xl select-text"
+      [class.text-green-600]="_showColorCodes && _value > 0 && _value <= 1"
+      [class.text-amber-300]="_showColorCodes && _value > 1 && _value <= 2"
+      [class.text-yellow-500]="_showColorCodes && _value > 2 && _value <= 3"
+      [class.text-orange-400]="_showColorCodes && _value > 3 && _value <= 4"
+      [class.text-red-700]="_showColorCodes && _value > 4 && _value <= 5"
+    >
+      @if (_outOf) {
+        {{ _value }}/{{ _outOf }}
+      } @else {
+        {{ _value }}
+      }
+    </span>
+
     <span class="font-body-xs min-h-9 text-center select-text">
       <ng-content />
     </span>
