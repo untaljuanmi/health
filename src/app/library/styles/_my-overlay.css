@@ -1,6 +1,6 @@
 @layer components {
   .my-overlay-backdrop {
-    @apply bg-black/25 duration-180;
+    @apply bg-black/25 duration-180 motion-reduce:duration-[1ms];
   }
 
   .cdk-overlay-container:has(.my-dialog-panel) {

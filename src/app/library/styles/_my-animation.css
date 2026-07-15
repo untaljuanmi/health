@@ -1,11 +1,6 @@
-@layer components {
-  .my-dialog-enter {
-    animation: my-dialog-enter 180ms cubic-bezier(0, 0, 0.2, 1);
-  }
-
-  .my-dialog-leave {
-    animation: my-dialog-leave 120ms cubic-bezier(0.4, 0, 1, 1);
-  }
+@theme {
+  --animate-my-dialog-enter: my-dialog-enter 180ms cubic-bezier(0, 0, 0.2, 1);
+  --animate-my-dialog-leave: my-dialog-leave 120ms cubic-bezier(0.4, 0, 1, 1);
 
   @keyframes my-dialog-enter {
     from {
@@ -30,15 +25,14 @@
       transform: scale(0.96) translateY(0.5rem);
     }
   }
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    .my-overlay-backdrop {
-      transition-duration: 1ms;
-    }
+@layer components {
+  .my-dialog-enter {
+    @apply animate-my-dialog-enter motion-reduce:[animation-duration:1ms];
+  }
 
-    .my-dialog-enter,
-    .my-dialog-leave {
-      animation-duration: 1ms;
-    }
+  .my-dialog-leave {
+    @apply animate-my-dialog-leave motion-reduce:[animation-duration:1ms];
   }
 }
