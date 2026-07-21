@@ -33,9 +33,10 @@ export default class SignUpPage {
   private readonly _authState = inject(AuthState);
 
   private _isLoading = this._authState.isLoading;
+  private _isLoadingProfile = this._authState.isLoadingProfile;
 
   isLoading = computed(() => {
-    const _isLoading = this._isLoading();
+    const _isLoading = this._isLoading() || this._isLoadingProfile();
     this.signUpFormGroup?.get('name')?.[_isLoading ? 'disable' : 'enable']?.();
     this.signUpFormGroup?.get('email')?.[_isLoading ? 'disable' : 'enable']?.();
     this.signUpFormGroup?.get('password')?.[_isLoading ? 'disable' : 'enable']?.();

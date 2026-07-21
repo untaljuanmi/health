@@ -5,14 +5,16 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { FirebaseError } from 'firebase/app';
 import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 
-import { AppState } from '../../../core';
-import { MyToastState } from '../../../library';
+import { AppState } from '../../../../core';
+import { MyToastState } from '../../../../library';
+import { UserProfileInterface } from '../../../models';
 
 @Service()
 export class AuthState {
@@ -24,8 +26,10 @@ export class AuthState {
   private readonly _myToastState = inject(MyToastState);
 
   private _isLoading = signal<boolean>(false);
+  private _isLoadingProfile = signal<boolean>(false);
 
   isLoading = this._isLoading.asReadonly();
+  isLoadingProfile = this._isLoadingProfile.asReadonly();
 
   constructor() {
     this.listenAuthStateReady();
@@ -46,16 +50,13 @@ export class AuthState {
       .finally(() => this._isLoading.set(false));
   }
 
-  private manageError(error: FirebaseError): void {
-    this._myToastState.error(`auth.errors.${error.code}`, 5000);
-  }
-
-  signUp(name: string, email: string, password: string): void {
+  signUp(displayName: string, email: string, password: string): void {
     if (!email || !password) return;
 
     this._isLoading.set(true);
 
     createUserWithEmailAndPassword(this._auth, email, password)
+      .then(() => this.updateUserProfile({ displayName }))
       .then(() => this._router.navigate(['/home']))
       .catch((error: FirebaseError) => this.manageError(error))
       .finally(() => this._isLoading.set(false));
@@ -68,6 +69,24 @@ export class AuthState {
       .then(() => this._router.navigate(['/auth/sign-in']))
       .catch((error: FirebaseError) => this.manageError(error))
       .finally(() => this._isLoading.set(false));
+  }
+
+  private updateUserProfile(profile: UserProfileInterface): void {
+    const _user = this._auth.currentUser;
+
+    if (!_user) {
+      return;
+    }
+
+    this._isLoadingProfile.set(true);
+
+    updateProfile(_user, profile)
+      .catch((error: FirebaseError) => this.manageError(error))
+      .finally(() => this._isLoadingProfile.set(false));
+  }
+
+  private manageError(error: FirebaseError): void {
+    this._myToastState.error(`auth.errors.${error.code}`, 5000);
   }
 
   private listenAuthStateReady(): void {
