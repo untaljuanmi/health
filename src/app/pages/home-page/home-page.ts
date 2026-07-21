@@ -60,7 +60,8 @@ export default class HomePage {
 
     periods.forEach((period: HomePagePeriod) => {
       const summary = state[period];
-      summary.painAverage = Math.round((summary.painLevel / summary.pain) * 10) / 10;
+      summary.painAverage =
+        summary.painLevel === 0 || summary.pain === 0 ? 0 : Math.round((summary.painLevel / summary.pain) * 10) / 10;
     });
 
     return state;
