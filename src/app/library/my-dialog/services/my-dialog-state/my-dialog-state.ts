@@ -3,7 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { inject, Injector, Service } from '@angular/core';
 
 import { MY_DIALOG_TOKEN } from '../../consts';
-import { MyDialogAnimation } from '../../directives/my-dialog-animation';
+import { MyDialogAnimation } from '../../directives';
 import { MyDialogConfigInterface } from '../../interfaces';
 import { MyDialogRefModel } from '../../models';
 

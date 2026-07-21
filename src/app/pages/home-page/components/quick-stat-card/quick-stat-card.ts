@@ -1,9 +1,8 @@
 import { Component, input } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-quick-stat-card',
-  imports: [TranslatePipe],
+  imports: [],
   templateUrl: './quick-stat-card.html',
 })
 export class QuickStatCard {

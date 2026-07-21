@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 
 import { MyDialogState } from '../../library';
+import { PageLayout } from '../../shared';
 import { Chronology } from './components/chronology/chronology';
 import { HealthEventFormDialog } from './components/health-event-form-dialog/health-event-form-dialog';
 
 @Component({
   selector: 'app-health-events-page',
-  imports: [TranslatePipe, Chronology],
+  imports: [Chronology, PageLayout],
   templateUrl: './health-events-page.html',
 })
 export default class HealthEventsPage {

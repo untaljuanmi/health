@@ -1,16 +1,8 @@
-<main>
-  <div class="page-header">
-    <h1 class="page-header-title">
-      <span class="mat-icon mat-icon-3xl text-my-primary-default select-none">event</span>
-      <span class="truncate">{{ 'healthEvents.title' | translate }}</span>
-    </h1>
-    <button class="my-button primary pl-8" (click)="onClickAddHealthEvent()">
-      <span class="mat-icon mat-icon-2xl">add</span>
-      {{ 'common.buttons.add' | translate }}
-    </button>
-  </div>
-
-  <div class="page-content">
-    <app-chronology />
-  </div>
-</main>
+<app-page-layout
+  [pageIcon]="'event'"
+  [pageTitle]="'healthEvents.title'"
+  [showAddButton]="true"
+  (addClicked)="onClickAddHealthEvent()"
+>
+  <app-chronology />
+</app-page-layout>

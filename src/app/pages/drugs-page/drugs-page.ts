@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 
 import { MyDialogState } from '../../library';
+import { EmptyContainer, PageLayout } from '../../shared';
 import { DrugsState } from '../../state';
 import { DrugCard } from './components/drug-card/drug-card';
 import { DrugFormDialog } from './components/drug-form-dialog/drug-form-dialog';
 
 @Component({
   selector: 'app-drugs-page',
-  imports: [DrugCard, TranslatePipe],
+  imports: [DrugCard, PageLayout, EmptyContainer],
   templateUrl: './drugs-page.html',
 })
 export default class DrugsPage {

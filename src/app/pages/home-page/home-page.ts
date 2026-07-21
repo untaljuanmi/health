@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import packageJson from '../../../../package.json';
+import { PageLayout } from '../../shared';
 import { HealthEvent, HealthEventTypeEnum } from '../../shared/models';
 import { HealthEventsState } from '../../state';
 import { MonthCalendar } from './components/month-calendar/month-calendar';
@@ -17,7 +18,7 @@ import {
 
 @Component({
   selector: 'app-home-page',
-  imports: [TranslatePipe, MonthCalendar, QuickStatCard],
+  imports: [TranslatePipe, MonthCalendar, QuickStatCard, PageLayout],
   templateUrl: './home-page.html',
 })
 export default class HomePage {
