@@ -14,6 +14,7 @@
 @import './app/library/styles/_my-overlay.css';
 @import './app/library/styles/_my-select.css';
 @import './app/library/styles/_my-switch.css';
+@import './app/library/styles/_my-textarea.css';
 @import './app/library/styles/_my-toast.css';
 
 /* ---- Enable dark mode ------------------------------------------------------------------------ */

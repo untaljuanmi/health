@@ -18,8 +18,9 @@
       }
 
       input.my-input,
+      textarea.my-textarea,
       select.my-select {
-        @apply border-2 border-red-700! text-red-700!;
+        @apply border-red-700! text-red-700! outline-1! outline-red-700!;
       }
     }
   }

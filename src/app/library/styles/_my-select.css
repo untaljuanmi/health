@@ -1,5 +1,5 @@
 @layer components {
   select.my-select {
-    @apply font-body-md focus-visible:border-my-primary-default text-my-secondary-900 border-my-secondary-400 placeholder:text-my-secondary-400 hover:border-my-secondary-900 disabled:border-my-secondary-200 disabled:text-my-secondary-200 h-11 max-h-11 min-h-11 cursor-pointer appearance-none rounded-lg border bg-transparent px-3 outline-none focus-visible:border-2 disabled:cursor-not-allowed disabled:placeholder:text-transparent;
+    @apply font-body-md focus-visible:border-my-primary-default focus-visible:outline-my-primary-default text-my-secondary-900 border-my-secondary-400 placeholder:text-my-secondary-400 hover:border-my-secondary-900 disabled:border-my-secondary-200 disabled:text-my-secondary-200 h-11 max-h-11 min-h-11 cursor-pointer appearance-none rounded-lg border bg-transparent px-3 focus-visible:outline-1 disabled:cursor-not-allowed disabled:placeholder:text-transparent;
   }
 }

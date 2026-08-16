@@ -1,0 +1,5 @@
+@layer components {
+  textarea.my-textarea {
+    @apply font-body-md focus-visible:outline-my-primary-default focus-visible:border-my-primary-default text-my-secondary-900 border-my-secondary-400 placeholder:text-my-secondary-400 hover:border-my-secondary-900 disabled:border-my-secondary-200 disabled:text-my-secondary-200 field-sizing-content min-h-23 appearance-none rounded-lg border bg-transparent p-3 focus-visible:outline-1! disabled:cursor-not-allowed disabled:placeholder:text-transparent;
+  }
+}
