@@ -1,4 +1,22 @@
 <section>
+  <div class="bg-my-secondary-50 flex items-center justify-between rounded-3xl p-4">
+    <div class="flex items-center gap-4">
+      <button class="my-icon-button" (click)="onClickPreviousMonth()">
+        <span class="mat-icon mat-icon-3xl">keyboard_arrow_left</span>
+      </button>
+      <button class="my-icon-button" (click)="onClickNextMonth()">
+        <span class="mat-icon mat-icon-3xl">keyboard_arrow_right</span>
+      </button>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="font-subtitle-md select-text">
+        {{ `healthEvents.chronology.months.${month() + 1}` | translate }}
+      </span>
+      <span class="font-subtitle-md select-text">
+        {{ year() }}
+      </span>
+    </div>
+  </div>
   @if (loading()) {
     <div class="flex min-h-84 items-center justify-center" role="status">
       <span class="mat-icon mat-icon-5xl text-my-secondary-default animate-spin">progress_activity</span>
@@ -25,6 +43,7 @@
                     [class.bg-my-primary-100]="calendarDay.isToday"
                     [class.ring-my-primary-default]="calendarDay.isToday"
                     [class.ring-2]="calendarDay.isToday"
+                    (click)="onClickCalendarDay(calendarDay.healthEvents)"
                   >
                     <span
                       class="font-subtitle-sm text-my-secondary-900 select-text"

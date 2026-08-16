@@ -4,5 +4,8 @@
   [showAddButton]="true"
   (addClicked)="onClickAddHealthEvent()"
 >
+  <div class="page-layout-content-box mb-3">
+    <app-month-calendar [healthEvents]="healthEvents()" [loading]="loading()" />
+  </div>
   <app-chronology />
 </app-page-layout>

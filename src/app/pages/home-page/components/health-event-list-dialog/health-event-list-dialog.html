@@ -1,0 +1,19 @@
+<my-dialog>
+  <my-dialog-header>
+    <span class="mat-icon mat-icon-3xl text-my-primary-default">
+      {{ 'event' }}
+    </span>
+    <span class="truncate">
+      {{ 'healthEvents.title' | translate }}
+    </span>
+  </my-dialog-header>
+
+  <my-dialog-content>
+    <div class="flex flex-col gap-3">
+      @let _healthEvents = healthEvents();
+      @for (_healthEvent of _healthEvents; track _healthEvent.id) {
+        <app-health-event-card [healthEvent]="_healthEvent" />
+      }
+    </div>
+  </my-dialog-content>
+</my-dialog>
