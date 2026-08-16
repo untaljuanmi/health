@@ -62,13 +62,12 @@
         <label for="descriptionField" class="my-label">
           {{ 'healthEvents.form.description' | translate }}
         </label>
-        <input
+        <textarea
           id="descriptionField"
-          type="text"
           [placeholder]="'healthEvents.form.description' | translate"
           formControlName="description"
-          class="my-input"
-        />
+          class="my-textarea"
+        ></textarea>
       </my-form-field>
 
       @if (_type === healthEventTypeEnum.Pain) {

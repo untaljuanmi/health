@@ -148,6 +148,8 @@ export class HealthEventFormDialog implements OnInit, OnDestroy {
     const healthEvent: HealthEventInterface | null = this.healthEvent() ?? null;
     const healthEventId: string | null = healthEvent?.id ?? null;
 
+    this._loading.set(true);
+
     if (!!healthEvent && !!healthEventId) {
       payload.updated = new Date();
 
@@ -155,7 +157,8 @@ export class HealthEventFormDialog implements OnInit, OnDestroy {
         .updateHealthEvent(healthEventId, payload)
         .then(() => this._myToastState.success('healthEvents.success.healthEventUpdated'))
         .then(() => this._myDialogRef.close())
-        .catch(() => this._myToastState.error('healthEvents.error.healthEventNotUpdated'));
+        .catch(() => this._myToastState.error('healthEvents.error.healthEventNotUpdated'))
+        .finally(() => this._loading.set(false));
 
       return;
     }
@@ -166,7 +169,8 @@ export class HealthEventFormDialog implements OnInit, OnDestroy {
       .createHealthEvent(payload)
       .then(() => this._myToastState.success('healthEvents.success.healthEventCreated'))
       .then(() => this._myDialogRef.close())
-      .catch(() => this._myToastState.error('healthEvents.error.healthEventNotCreated'));
+      .catch(() => this._myToastState.error('healthEvents.error.healthEventNotCreated'))
+      .finally(() => this._loading.set(false));
   }
 
   private buildFormGroup(): FormGroup {

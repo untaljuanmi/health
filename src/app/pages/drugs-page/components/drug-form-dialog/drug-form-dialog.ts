@@ -68,6 +68,8 @@ export class DrugFormDialog {
     const drug: DrugInterface | null = this.drug() ?? null;
     const drugId: string | null = drug?.id ?? null;
 
+    this._loading.set(true);
+
     if (!!drug && !!drugId) {
       payload.updated = new Date();
 
@@ -75,7 +77,8 @@ export class DrugFormDialog {
         .updateDrug(drugId, payload)
         .then(() => this._myToastState.success('drugs.success.drugUpdated'))
         .then(() => this._myDialogRef.close())
-        .catch(() => this._myToastState.error('drugs.error.drugNotUpdated'));
+        .catch(() => this._myToastState.error('drugs.error.drugNotUpdated'))
+        .finally(() => this._loading.set(false));
 
       return;
     }
@@ -86,7 +89,8 @@ export class DrugFormDialog {
       .createDrug(payload)
       .then(() => this._myToastState.success('drugs.success.drugCreated'))
       .then(() => this._myDialogRef.close())
-      .catch(() => this._myToastState.error('drugs.error.drugNotCreated'));
+      .catch(() => this._myToastState.error('drugs.error.drugNotCreated'))
+      .finally(() => this._loading.set(false));
   }
 
   private buildFormGroup(): FormGroup {
